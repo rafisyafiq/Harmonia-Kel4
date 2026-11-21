@@ -1,0 +1,5 @@
+# Tolak eksekusi skrip di folder unggahan
+<FilesMatch "\.(php|phtml|phar|php[0-9])$">
+    Require all denied
+</FilesMatch>
+Options -Indexes
