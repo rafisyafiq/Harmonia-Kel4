@@ -11,6 +11,9 @@ $st->execute([$u['id']]);
 $laporan = $st->fetchAll();
 
 $saldo = saldo_warga($pdo, (int)$u['id']);
+$st = $pdo->prepare('SELECT COUNT(*) FROM sembako_claims WHERE user_id = ?');
+$st->execute([$u['id']]);
+$sembako = (int)$st->fetchColumn();
 
 $st = $pdo->prepare('SELECT COUNT(*) FROM proposal_votes WHERE user_id = ?');
 $st->execute([$u['id']]);
@@ -30,6 +33,7 @@ $aksi = [
     ['Ajukan bantuan', '/bantuan/ajukan.php', 'Mulai pengajuan baru.'],
     ['Lapor masalah', '/lapor/buat.php', 'Kirim laporan dengan foto.'],
     ['Lihat saldo sampah', '/sampah/index.php', 'Riwayat setoran dan penarikan.'],
+    ['Bantuan sosial', '/sembako/index.php', 'Bagikan dan ambil sembako.'],
 ];
 ?>
 <?php include ROOT_DIR . '/includes/header.php'; ?>
@@ -49,6 +53,7 @@ $aksi = [
             <div class="stat"><span>Pengajuan aktif</span><b><?= $aktif ?></b></div>
             <div class="stat"><span>Laporan saya</span><b><?= $totalLaporan ?></b></div>
             <div class="stat"><span>Saldo bank sampah</span><b><?= rupiah($saldo) ?></b></div>
+            <div class="stat"><span>Paket sembako diambil</span><b><?= $sembako ?></b></div>
             <div class="stat"><span>Usulan didukung</span><b><?= $dukungan ?></b></div>
         </div>
 

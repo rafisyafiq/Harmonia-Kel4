@@ -25,3 +25,4 @@ document.querySelectorAll('form[data-busy]').forEach(function (form) {
         setTimeout(function () { btn.textContent = btn.dataset.label; btn.disabled = false; }, 8000);
     });
 });
+

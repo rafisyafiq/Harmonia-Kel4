@@ -2,9 +2,11 @@
 CREATE DATABASE IF NOT EXISTS harmonia CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE harmonia;
 
-DROP TABLE IF EXISTS announcements, food_claims, food_shares, safety_checks, shelters, businesses,
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS announcements, sembako_claims, sembako_shares, safety_checks, shelters, businesses,
   proposal_votes, proposals, status_logs, waste_withdrawals, waste_deposits, waste_types,
   reports, aid_requests, family_checks, users, rw, settings;
+SET FOREIGN_KEY_CHECKS = 1;
 
 CREATE TABLE rw (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -165,7 +167,7 @@ CREATE TABLE waste_withdrawals (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
-CREATE TABLE food_shares (
+CREATE TABLE sembako_shares (
   id INT AUTO_INCREMENT PRIMARY KEY,
   donor_id INT NOT NULL,
   rw_id INT NOT NULL,
@@ -181,13 +183,13 @@ CREATE TABLE food_shares (
   CHECK (porsi_sisa <= porsi_total)
 ) ENGINE=InnoDB;
 
-CREATE TABLE food_claims (
+CREATE TABLE sembako_claims (
   id INT AUTO_INCREMENT PRIMARY KEY,
   share_id INT NOT NULL,
   user_id INT NOT NULL,
   porsi TINYINT UNSIGNED NOT NULL DEFAULT 1,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (share_id) REFERENCES food_shares(id) ON DELETE CASCADE,
+  FOREIGN KEY (share_id) REFERENCES sembako_shares(id) ON DELETE CASCADE,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
@@ -234,25 +236,3 @@ INSERT INTO settings (setting_key, setting_value) VALUES
   ('ambang_dipantau_kali', '1.5');
 INSERT INTO waste_types (nama, harga_per_kg) VALUES
   ('Plastik', 2500), ('Kertas', 1500), ('Logam', 5000), ('Kaca', 500), ('Minyak jelantah', 4000);
-
-ALTER TABLE reports ADD COLUMN foto_selesai VARCHAR(120) NULL AFTER foto;
-
--- F11: Pengumuman & Agenda RW
-CREATE TABLE announcements (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  author_id INT NOT NULL,
-  rw_id INT NULL,                                   -- NULL = semua RW (hanya admin)
-  tipe ENUM('pengumuman','agenda','tips') NOT NULL DEFAULT 'pengumuman',
-  judul VARCHAR(120) NOT NULL,
-  isi TEXT NOT NULL,
-  tanggal_acara DATETIME NULL,                      -- wajib bila tipe = agenda
-  lokasi VARCHAR(120) NULL,
-  siaga TINYINT(1) NOT NULL DEFAULT 0,              -- tampil sebagai banner siaga (admin saja)
-  sematkan TINYINT(1) NOT NULL DEFAULT 0,
-  berlaku_sampai DATE NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE,
-  FOREIGN KEY (rw_id) REFERENCES rw(id) ON DELETE CASCADE,
-  INDEX idx_tampil (rw_id, tipe, tanggal_acara)
-) ENGINE=InnoDB;

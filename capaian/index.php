@@ -66,7 +66,7 @@ $konteks = $rwNama ? ' · ' . $rwNama : ' · semua RW';
             <div class="metric metric--peach"><span>Keluarga terbantu</span><b><?= number_format($s['keluarga_terbantu']) ?></b><span>pengajuan bantuan disetujui</span></div>
             <div class="metric metric--lavender"><span>Usulan diteruskan</span><b><?= number_format($s['usulan_terwujud']) ?></b><span>usulan warga yang dijalankan</span></div>
             <div class="metric metric--sky"><span>Sampah terpilah</span><b><?= number_format($s['sampah_kg'], 1, ',', '.') ?> kg</b><span>disetor ke bank sampah</span></div>
-            <div class="metric metric--peach"><span>Porsi pangan</span><b><?= number_format($s['porsi_pangan']) ?></b><span>tersalurkan antar warga</span></div>
+            <div class="metric metric--peach"><span>Paket sembako</span><b><?= number_format($s['sembako_porsi']) ?></b><span>tersalurkan antar warga</span></div>
             <div class="metric metric--sage"><span>Usaha warga tayang</span><b><?= number_format($s['usaha']) ?></b><span>lapak di etalase RW</span></div>
             <div class="metric metric--lavender"><span>RW terhubung</span><b><?= number_format($s['rw']) ?></b><span>wilayah yang dilayani</span></div>
         </div>

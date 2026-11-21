@@ -1,16 +1,17 @@
 <?php
 require_once __DIR__ . '/../config/auth.php';
 $u = require_role('warga');
+refresh_sembako($pdo);
 
-refresh_pangan($pdo);
 
-$title = 'Bank pangan';
-$st = $pdo->prepare("SELECT f.*, us.nama AS donor FROM food_shares f JOIN users us ON us.id = f.donor_id
+
+$title = 'Bantuan sosial';
+$st = $pdo->prepare("SELECT f.*, us.nama AS donor FROM sembako_shares f JOIN users us ON us.id = f.donor_id
     WHERE f.rw_id = ? AND f.status = 'tersedia' ORDER BY f.batas_ambil ASC");
 $st->execute([$u['rw_id']]);
 $tersedia = $st->fetchAll();
 
-$st = $pdo->prepare('SELECT * FROM food_shares WHERE donor_id = ? ORDER BY created_at DESC LIMIT 20');
+$st = $pdo->prepare('SELECT * FROM sembako_shares WHERE donor_id = ? ORDER BY created_at DESC LIMIT 20');
 $st->execute([$u['id']]);
 $milikSaya = $st->fetchAll();
 ?>
@@ -20,11 +21,11 @@ $milikSaya = $st->fetchAll();
     <div class="container">
         <div class="dash__head">
             <div>
-                <p class="eyebrow">Bank pangan · SDGs 1 &amp; 11</p>
-                <h1>Berbagi makanan, kurangi terbuang.</h1>
+                <p class="eyebrow">Bantuan sosial · SDGs 1 &amp; 11</p>
+                <h1>Berbagi Sembako, kurangi terbuang.</h1>
                 <p class="small">Hanya untuk warga RW Anda. Satu orang maksimal 2 porsi per postingan.</p>
             </div>
-            <a class="btn btn--primary btn--sm" href="<?= BASE ?>/pangan/bagikan.php">Bagikan makanan</a>
+            <a class="btn btn--primary btn--sm" href="<?= BASE ?>/sembako/bagikan.php">Bagikan sembako</a>
         </div>
 
         <h2 class="mt-2">Tersedia sekarang</h2>
@@ -48,7 +49,7 @@ $milikSaya = $st->fetchAll();
                                 </select>
                                 <button class="btn btn--primary btn--sm" type="button"
                                         data-ambil="<?= (int)$f['id'] ?>"
-                                        data-url="<?= BASE ?>/pangan/ambil.php"
+                                        data-url="<?= BASE ?>/sembako/ambil.php"
                                         data-csrf="<?= csrf_token() ?>"
                                         data-sisa="<?= (int)$f['porsi_sisa'] ?>">Ambil</button>
                             </div>
@@ -59,7 +60,7 @@ $milikSaya = $st->fetchAll();
                 <?php endforeach; ?>
             </div>
         <?php else : ?>
-            <div class="empty mt-2"><b>Belum ada makanan tersedia.</b>Bagikan makanan layak berlebih untuk tetangga.</div>
+            <div class="empty mt-2"><b>Belum ada Sembako tersedia.</b>Bagikan sembako layak berlebih untuk tetangga.</div>
         <?php endif; ?>
 
         <div class="panel mt-3">
@@ -67,7 +68,7 @@ $milikSaya = $st->fetchAll();
             <?php if ($milikSaya) : ?>
                 <div class="table-wrap">
                     <table class="data">
-                        <thead><tr><th>Makanan</th><th>Porsi</th><th>Batas ambil</th><th>Status</th></tr></thead>
+                        <thead><tr><th>Sembako</th><th>Porsi</th><th>Batas ambil</th><th>Status</th></tr></thead>
                         <tbody>
                         <?php foreach ($milikSaya as $f) : ?>
                             <tr>
@@ -81,12 +82,12 @@ $milikSaya = $st->fetchAll();
                     </table>
                 </div>
             <?php else : ?>
-                <p class="small muted">Anda belum pernah membagikan makanan.</p>
+                <p class="small muted">Anda belum pernah membagikan sembako.</p>
             <?php endif; ?>
         </div>
     </div>
 </section>
 
 <?php
-$scripts = ['/assets/js/pangan.js'];
+$scripts = ['/assets/js/sembako.js'];
 include ROOT_DIR . '/includes/footer.php';

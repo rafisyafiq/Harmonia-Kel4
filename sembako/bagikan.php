@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/auth.php';
 $u = require_role('warga');
 
-$title = 'Bagikan makanan';
+$title = 'Bagikan sembako';
 $errors = [];
 $defaultBatas = date('Y-m-d\TH:i', strtotime('+6 hours'));
 
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $batas = trim((string)($_POST['batas_ambil'] ?? ''));
 
     if (mb_strlen($nama) < 3 || mb_strlen($nama) > 100) {
-        $errors['nama_makanan'] = 'Nama makanan 3–100 karakter.';
+        $errors['nama_makanan'] = 'Nama Sembako 3–100 karakter.';
     }
     if ($porsi < 1 || $porsi > 100) {
         $errors['porsi_total'] = 'Porsi 1–100.';
@@ -28,10 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!$errors) {
-        $st = $pdo->prepare('INSERT INTO food_shares (donor_id, rw_id, nama_makanan, kondisi, porsi_total, porsi_sisa, batas_ambil) VALUES (?, ?, ?, ?, ?, ?, ?)');
+        $st = $pdo->prepare('INSERT INTO sembako_shares (donor_id, rw_id, nama_makanan, kondisi, porsi_total, porsi_sisa, batas_ambil) VALUES (?, ?, ?, ?, ?, ?, ?)');
         $st->execute([$u['id'], $u['rw_id'], $nama, $kondisi ?: null, $porsi, $porsi, date('Y-m-d H:i:s', $waktu)]);
-        flash('sukses', 'Makanan dibagikan. Warga RW Anda dapat mengambilnya sampai batas waktu.');
-        redirect(BASE . '/pangan/index.php');
+        flash('sukses', 'Sembako dibagikan. Warga RW Anda dapat mengambilnya sampai batas waktu.');
+        redirect(BASE . '/sembako/index.php');
     }
 }
 ?>
@@ -40,8 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <section class="form-page">
     <div class="container">
         <div class="form-card form-card--narrow">
-            <h1>Bagikan makanan.</h1>
-            <p class="small">Hanya makanan layak konsumsi. Porsi akan berkurang otomatis saat diambil warga lain.</p>
+            <h1>Bagikan sembako.</h1>
+            <p class="small">Hanya Sembako layak konsumsi. Porsi akan berkurang otomatis saat diambil warga lain.</p>
 
             <?php if ($errors) : ?>
                 <div class="alert alert--error" role="alert">Periksa kembali isian yang ditandai.</div>
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form method="post" data-busy>
                 <?= csrf_field() ?>
                 <div class="field <?= isset($errors['nama_makanan']) ? 'field--error' : '' ?>">
-                    <label for="nama_makanan">Nama makanan</label>
+                    <label for="nama_makanan">Nama Sembako</label>
                     <input id="nama_makanan" name="nama_makanan" value="<?= old('nama_makanan') ?>" required minlength="3" maxlength="100">
                     <?php if (isset($errors['nama_makanan'])) : ?><span class="field__error"><?= e($errors['nama_makanan']) ?></span><?php endif; ?>
                 </div>
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="form-actions">
                     <button class="btn btn--primary" type="submit">Bagikan</button>
-                    <a class="btn btn--outline" href="<?= BASE ?>/pangan/index.php">Kembali</a>
+                    <a class="btn btn--outline" href="<?= BASE ?>/sembako/index.php">Kembali</a>
                 </div>
             </form>
         </div>

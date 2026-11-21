@@ -468,22 +468,6 @@ INSERT INTO safety_checks (id, user_id, shelter_id, status, catatan, created_at)
 (13,17,1,'aman',NULL,DATE_SUB(NOW(), INTERVAL 2 HOUR)),
 (14,18,3,'aman',NULL,DATE_SUB(NOW(), INTERVAL 1 HOUR));
 
-INSERT INTO food_shares (id, donor_id, rw_id, nama_makanan, kondisi, porsi_total, porsi_sisa, batas_ambil, status, created_at) VALUES
-(1,3,5,'Nasi kotak sisa acara','Dimasak hari ini, masih layak konsumsi',10,8,DATE_ADD(NOW(), INTERVAL 6 HOUR),'tersedia',DATE_SUB(NOW(), INTERVAL 1 DAY)),
-(2,8,1,'Roti tawar kemasan','Dimasak hari ini, masih layak konsumsi',6,5,DATE_ADD(NOW(), INTERVAL 7 HOUR),'tersedia',DATE_SUB(NOW(), INTERVAL 1 DAY)),
-(3,11,1,'Sayur bayam matang','Dimasak hari ini, masih layak konsumsi',8,4,DATE_ADD(NOW(), INTERVAL 8 HOUR),'tersedia',DATE_SUB(NOW(), INTERVAL 1 DAY)),
-(4,14,1,'Buah pisang matang','Dimasak hari ini, masih layak konsumsi',15,12,DATE_ADD(NOW(), INTERVAL 6 HOUR),'tersedia',DATE_SUB(NOW(), INTERVAL 1 DAY)),
-(5,17,1,'Lauk ayam ungkep','Dimasak hari ini, masih layak konsumsi',12,4,DATE_ADD(NOW(), INTERVAL 7 HOUR),'tersedia',DATE_SUB(NOW(), INTERVAL 1 DAY)),
-(6,20,2,'Nasi uduk pagi','Dimasak hari ini, masih layak konsumsi',20,18,DATE_ADD(NOW(), INTERVAL 8 HOUR),'tersedia',DATE_SUB(NOW(), INTERVAL 1 DAY)),
-(7,23,2,'Kue basah kotak','Dimasak hari ini, masih layak konsumsi',9,0,DATE_ADD(NOW(), INTERVAL 6 HOUR),'habis',DATE_SUB(NOW(), INTERVAL 1 DAY)),
-(8,26,2,'Telur rebus','Dimasak hari ini, masih layak konsumsi',14,0,DATE_SUB(NOW(), INTERVAL 1 DAY),'kedaluwarsa',DATE_SUB(NOW(), INTERVAL 2 DAY));
-
-INSERT INTO food_claims (id, share_id, user_id, porsi, created_at) VALUES
-(1,1,54,2,'2026-11-19 10:00:00'),
-(2,4,7,3,'2026-11-19 10:00:00'),
-(3,6,21,2,'2026-11-19 10:00:00'),
-(4,2,10,1,'2026-11-19 10:00:00');
-
 INSERT INTO businesses (id, user_id, nama_usaha, kategori, deskripsi, foto, kontak, status, alasan_tolak, tampil, created_at) VALUES
 (1,3,'Warung Bu Siti','makanan','Masakan rumahan harian: nasi, sayur, dan lauk. Melayani pesanan untuk acara kecil di lingkungan RW.','assets/img/lapak-placeholder.svg','081230000000','tayang',NULL,1,'2026-10-10 09:00:00'),
 (2,9,'Servis Sepeda Pak Budi','jasa','Servis dan perbaikan sepeda, ganti ban, serta penyetelan rem. Buka setiap hari mulai pukul 08.00.','assets/img/lapak-placeholder.svg','081230001111','tayang',NULL,1,'2026-10-11 09:00:00'),
@@ -501,3 +485,7 @@ INSERT INTO announcements (id, author_id, rw_id, tipe, judul, isi, tanggal_acara
 (4,2,5,'agenda','Pembagian pangan bulanan','Pembagian paket pangan untuk warga terdata. Bawa kartu warga dan datang sesuai jadwal agar antrean tertib.',DATE_ADD(CURDATE(), INTERVAL 7 DAY),'Posyandu RW 05',0,0,NULL,NOW()),
 (5,1,NULL,'agenda','Pelatihan usaha warga','Pelatihan pencatatan keuangan sederhana dan foto produk untuk lapak usaha warga. Terbuka untuk semua RW, kuota 30 orang. Daftar lewat petugas RW masing-masing.',DATE_ADD(CURDATE(), INTERVAL 14 DAY),'Kantor RW 05',0,0,NULL,NOW()),
 (6,2,5,'tips','Pisahkan sampah sejak dari rumah','Sampah plastik, kertas, logam, dan kaca yang dipisahkan akan dihargai lebih baik di bank sampah. Bilas kemasan bekas makanan agar tidak berbau dan mudah ditimbang.',NULL,NULL,0,0,NULL,NOW());
+
+INSERT INTO sembako_shares (id, donor_id, rw_id, nama_makanan, kondisi, porsi_total, porsi_sisa, batas_ambil, status, created_at) VALUES
+(1,3,5,'Paket sembako (beras 5kg, minyak 1L)','Bantuan sosial untuk warga terdampak',5,3,DATE_ADD(NOW(), INTERVAL 6 HOUR),'tersedia',DATE_SUB(NOW(), INTERVAL 1 DAY)),
+(2,8,1,'Paket sembako (gula, telur, mie)','Bantuan sosial untuk warga terdampak',10,7,DATE_ADD(NOW(), INTERVAL 7 HOUR),'tersedia',DATE_SUB(NOW(), INTERVAL 1 DAY));

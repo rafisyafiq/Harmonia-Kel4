@@ -15,7 +15,7 @@ if ($porsi < 1 || $porsi > 2) {
 
 try {
     $pdo->beginTransaction();
-    $st = $pdo->prepare('SELECT * FROM food_shares WHERE id = ? FOR UPDATE');
+    $st = $pdo->prepare('SELECT * FROM sembako_shares WHERE id = ? FOR UPDATE');
     $st->execute([$id]);
     $f = $st->fetch();
 
@@ -25,7 +25,7 @@ try {
     }
     if ($f['status'] !== 'tersedia' || strtotime($f['batas_ambil']) <= time()) {
         $pdo->rollBack();
-        json_out(['error' => 'Makanan ini sudah tidak tersedia.'], 409);
+        json_out(['error' => 'Sembako ini sudah tidak tersedia.'], 409);
     }
     if ((int)$f['rw_id'] !== (int)$u['rw_id']) {
         $pdo->rollBack();
@@ -36,7 +36,7 @@ try {
         json_out(['error' => 'Tidak bisa mengambil postingan sendiri.'], 422);
     }
 
-    $st = $pdo->prepare('SELECT COALESCE(SUM(porsi), 0) FROM food_claims WHERE share_id = ? AND user_id = ?');
+    $st = $pdo->prepare('SELECT COALESCE(SUM(porsi), 0) FROM sembako_claims WHERE share_id = ? AND user_id = ?');
     $st->execute([$id, $u['id']]);
     $sudah = (int)$st->fetchColumn();
     if ($sudah + $porsi > 2) {
@@ -49,8 +49,8 @@ try {
     }
 
     $sisa = (int)$f['porsi_sisa'] - $porsi;
-    $pdo->prepare('INSERT INTO food_claims (share_id, user_id, porsi) VALUES (?, ?, ?)')->execute([$id, $u['id'], $porsi]);
-    $pdo->prepare('UPDATE food_shares SET porsi_sisa = ?, status = ? WHERE id = ?')
+    $pdo->prepare('INSERT INTO sembako_claims (share_id, user_id, porsi) VALUES (?, ?, ?)')->execute([$id, $u['id'], $porsi]);
+    $pdo->prepare('UPDATE sembako_shares SET porsi_sisa = ?, status = ? WHERE id = ?')
         ->execute([$sisa, $sisa === 0 ? 'habis' : 'tersedia', $id]);
     $pdo->commit();
 } catch (Throwable $e) {

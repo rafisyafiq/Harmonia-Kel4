@@ -5,6 +5,7 @@ $layanan = [
     ['Pengajuan bantuan', '/bantuan/ajukan.php'],
     ['Lapor masalah', '/lapor/index.php'],
     ['Bank sampah', '/sampah/index.php'],
+    ['Bantuan sosial', '/sembako/index.php'],
     ['Lapak usaha warga', '/lapak/index.php'],
     ['Capaian bersama', '/capaian/index.php'],
 ];
@@ -52,12 +53,23 @@ $layanan = [
         </div>
     </div>
     <div class="container footer__bottom">
-        <span>© <?= $tahun ?> HARMONIA · Praktikum Pemrograman Web</span>
-        <span>Tema SDGs 1 &amp; 11 · Data contoh, bukan penetapan resmi</span>
+        <span>© <?= $tahun ?> HARMONIA · A Better Life in a Better Community</span>
     </div>
 </footer>
 
 <script src="<?= BASE ?>/assets/js/app.js" defer></script>
+<script>
+(function () {
+    var els = document.querySelectorAll('section, .panel, .card, .metric, .svc, .value, .step, .lapak, .report-row, .chart-card, .cta');
+    if (!els.length) return;
+    els.forEach(function (el) { el.classList.add('reveal'); });
+    if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('is-visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { e.target.classList.toggle('is-visible', e.isIntersecting); });
+    }, { threshold: 0.1 });
+    els.forEach(function (el) { io.observe(el); });
+})();
+</script>
 <?php if (!empty($scripts)) {
     foreach ((array)$scripts as $src) {
         echo '<script src="' . BASE . e($src) . '" defer></script>';

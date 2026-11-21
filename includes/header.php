@@ -2,15 +2,6 @@
 require_once __DIR__ . '/../config/auth.php';
 $u = user();
 $active = $active ?? '';
-$bannerSiaga = null;
-if (file_exists(ROOT_DIR . '/pengumuman/detail.php')) {
-    $stBanner = $pdo->prepare("SELECT id, judul FROM announcements
-        WHERE siaga = 1 AND (berlaku_sampai IS NULL OR berlaku_sampai >= CURDATE())
-          AND (rw_id IS NULL OR rw_id = ?)
-        ORDER BY created_at DESC LIMIT 1");
-    $stBanner->execute([(int)($u['rw_id'] ?? 0)]);
-    $bannerSiaga = $stBanner->fetch();
-}
 $navItems = [
     ['beranda', 'Beranda', '/index.php'],
     ['lapor', 'Lapor', '/lapor/index.php'],
@@ -26,25 +17,13 @@ $navItems = [
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?= e($title ?? 'Beranda') ?> · HARMONIA</title>
-<meta name="description" content="HARMONIA — satu pintu layanan warga: cek kondisi keluarga, pengajuan bantuan, laporan lingkungan, bank sampah, bank pangan, dan lapak usaha warga.">
+<meta name="description" content="HARMONIA — satu pintu layanan warga: cek kondisi keluarga, pengajuan bantuan, laporan lingkungan, bank sampah, bantuan sosial (sembako), dan lapak usaha warga.">
 <link rel="stylesheet" href="<?= BASE ?>/assets/css/style.css">
 <link rel="icon" href="<?= BASE ?>/assets/img/favicon.svg">
 </head>
 <body>
+<script>document.documentElement.classList.add('js');</script>
 <a class="skip-link" href="#main">Lewati ke konten</a>
-
-<?php if ($bannerSiaga) : ?>
-    <a class="siaga-banner" href="<?= BASE ?>/pengumuman/detail.php?id=<?= (int)$bannerSiaga['id'] ?>">
-        Siaga: <?= e($bannerSiaga['judul']) ?> — baca selengkapnya
-    </a>
-<?php endif; ?>
-
-<div class="topbar">
-    <div class="container topbar__in">
-        <span>Layanan warga RW · SDGs 1 &amp; 11</span>
-        <span class="hide-sm">Senin–Jumat, 08.00–16.00 · Kantor RW</span>
-    </div>
-</div>
 
 <header class="site-header">
     <div class="container nav">

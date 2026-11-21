@@ -140,17 +140,17 @@ function public_stats(PDO $pdo, string $rentang = 'all', int $rw = 0): array
     $w = [];
     $a = [];
     if ($cutoff !== null) {
-        $w[] = 'fc.created_at >= ?';
+        $w[] = 'sc.created_at >= ?';
         $a[] = $cutoff;
     }
     if ($rw) {
-        $w[] = 'fs.rw_id = ?';
+        $w[] = 'ss.rw_id = ?';
         $a[] = $rw;
     }
-    $st = $pdo->prepare('SELECT COALESCE(SUM(fc.porsi),0) FROM food_claims fc
-        JOIN food_shares fs ON fs.id = fc.share_id WHERE 1=1' . ($w ? ' AND ' . implode(' AND ', $w) : ''));
+    $st = $pdo->prepare('SELECT COALESCE(SUM(sc.porsi),0) FROM sembako_claims sc
+        JOIN sembako_shares ss ON ss.id = sc.share_id WHERE 1=1' . ($w ? ' AND ' . implode(' AND ', $w) : ''));
     $st->execute($a);
-    $porsi = (int)$st->fetchColumn();
+    $sembako_porsi = (int)$st->fetchColumn();
 
     $ringkas = [
         'rw' => $rw ? 1 : (int)$pdo->query('SELECT COUNT(*) FROM rw')->fetchColumn(),
@@ -160,7 +160,7 @@ function public_stats(PDO $pdo, string $rentang = 'all', int $rw = 0): array
         'sampah_kg' => $sampah_kg,
         'keluarga_terbantu' => $keluarga,
         'usulan_terwujud' => $usulan,
-        'porsi_pangan' => $porsi,
+        'sembako_porsi' => $sembako_porsi,
         'usaha' => $usaha,
     ];
 
@@ -320,8 +320,9 @@ function kode_pengajuan(int $id): string
     return 'PGJ-' . str_pad((string)$id, 4, '0', STR_PAD_LEFT);
 }
 
-function refresh_pangan(PDO $pdo): void
+function refresh_sembako(PDO $pdo): void
 {
-    $pdo->exec("UPDATE food_shares SET status = 'kedaluwarsa'
+    $pdo->exec("UPDATE sembako_shares SET status = 'kedaluwarsa'
         WHERE status = 'tersedia' AND batas_ambil < NOW()");
 }
+
