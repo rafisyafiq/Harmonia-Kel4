@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/auth.php';
 $u = require_role('admin');
 
-$title = 'Kelola pengguna';
+$title = 'Kelola Pengguna';
 $errors = [];
 $rwList = $pdo->query('SELECT id, nama FROM rw ORDER BY nama')->fetchAll();
 $roleList = ['warga', 'petugas', 'admin'];
@@ -118,7 +118,7 @@ $data = $st->fetchAll();
         <div class="dash__head">
             <div>
                 <p class="eyebrow">Administrasi</p>
-                <h1>Kelola pengguna.</h1>
+                <h1>Kelola Pengguna</h1>
                 <p class="small">Tambah petugas/admin, ubah peran dan RW, reset sandi, atau hapus pengguna tanpa data.</p>
             </div>
             <a class="btn btn--ghost btn--sm" href="<?= BASE ?>/dashboard/admin.php">Dashboard</a>
@@ -129,7 +129,7 @@ $data = $st->fetchAll();
         <?php endif; ?>
 
         <div class="panel">
-            <h3>Tambah pengguna</h3>
+            <h3>Tambah Pengguna</h3>
             <form method="post" class="form-grid" data-busy>
                 <?= csrf_field() ?>
                 <input type="hidden" name="aksi" value="tambah">
@@ -163,7 +163,7 @@ $data = $st->fetchAll();
                     <?php if (isset($errors['rw_id'])) : ?><span class="field__error"><?= e($errors['rw_id']) ?></span><?php endif; ?>
                 </div>
                 <div class="field field--full">
-                    <button class="btn btn--primary" type="submit">Tambah pengguna</button>
+                    <button class="btn btn--primary" type="submit">Tambah Pengguna</button>
                 </div>
             </form>
         </div>
@@ -171,13 +171,13 @@ $data = $st->fetchAll();
         <form method="get" class="form-card mt-3" style="padding:1rem">
             <div class="form-grid">
                 <div class="field" style="margin-bottom:0">
-                    <label for="q">Cari nama/email</label>
+                    <label for="q">Cari Nama/Email</label>
                     <input id="q" name="q" value="<?= e($q) ?>">
                 </div>
                 <div class="field" style="margin-bottom:0">
                     <label for="fr">Peran</label>
                     <select id="fr" name="role" onchange="this.form.submit()">
-                        <option value="">Semua peran</option>
+                        <option value="">Semua Peran</option>
                         <?php foreach ($roleList as $r) : ?>
                             <option value="<?= $r ?>" <?= $fRole === $r ? 'selected' : '' ?>><?= ucfirst($r) ?></option>
                         <?php endforeach; ?>
@@ -196,7 +196,7 @@ $data = $st->fetchAll();
             <noscript><button class="btn btn--outline btn--sm mt-2" type="submit">Terapkan</button></noscript>
         </form>
 
-        <div class="table-wrap mt-3">
+        <div class="table-wrap table-wrap--scroll mt-3">
             <table class="data">
                 <thead><tr><th>Nama</th><th>Email</th><th>Peran</th><th>RW</th><th>Aksi</th></tr></thead>
                 <tbody>
@@ -221,7 +221,7 @@ $data = $st->fetchAll();
                                     <?php endforeach; ?>
                                 </select>
                                 <button class="btn btn--ghost btn--sm" type="submit">Simpan</button>
-                                <button class="btn btn--outline btn--sm" type="submit" name="aksi" value="reset" formnovalidate>Reset sandi</button>
+                                <button class="btn btn--outline btn--sm" type="submit" name="aksi" value="reset" formnovalidate>Reset Sandi</button>
                                 <button class="btn btn--danger btn--sm" type="submit" name="aksi" value="hapus" formnovalidate
                                         onclick="return confirm('Hapus pengguna ini?')">Hapus</button>
                             </form>

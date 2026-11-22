@@ -71,7 +71,7 @@ $me = $st->fetch();
 <section class="form-page">
     <div class="container">
         <div class="form-card form-card--narrow">
-            <h1>Profil saya</h1>
+            <h1>Profil Saya</h1>
             <p class="small">Data ini dipakai untuk menghubungi Anda terkait layanan RW.</p>
 
             <?php if ($errors) : ?>
@@ -81,7 +81,7 @@ $me = $st->fetch();
             <form method="post" enctype="multipart/form-data" data-busy>
                 <?= csrf_field() ?>
                 <div class="field <?= isset($errors['nama']) ? 'field--error' : '' ?>">
-                    <label for="nama">Nama lengkap</label>
+                    <label for="nama">Nama Lengkap</label>
                     <input id="nama" name="nama" value="<?= old('nama', $me['nama']) ?>" required minlength="3" maxlength="80" pattern="[A-Za-z ]{3,80}">
                     <?php if (isset($errors['nama'])) : ?><span class="field__error"><?= e($errors['nama']) ?></span><?php endif; ?>
                 </div>
@@ -101,28 +101,28 @@ $me = $st->fetch();
                     <?php if (isset($errors['foto'])) : ?><span class="field__error"><?= e($errors['foto']) ?></span><?php endif; ?>
                 </div>
 
-                <h3 class="mt-3">Ganti sandi</h3>
+                <h3 class="mt-3">Ganti Sandi</h3>
                 <p class="small">Biarkan kosong bila tidak ingin mengganti sandi.</p>
                 <div class="field <?= isset($errors['sandi_lama']) ? 'field--error' : '' ?>">
-                    <label for="sandi_lama">Sandi saat ini</label>
+                    <label for="sandi_lama">Sandi Saat Ini</label>
                     <input id="sandi_lama" name="sandi_lama" type="password" autocomplete="current-password">
                     <?php if (isset($errors['sandi_lama'])) : ?><span class="field__error"><?= e($errors['sandi_lama']) ?></span><?php endif; ?>
                 </div>
                 <div class="form-grid">
                     <div class="field <?= isset($errors['sandi_baru']) ? 'field--error' : '' ?>">
-                        <label for="sandi_baru">Sandi baru</label>
+                        <label for="sandi_baru">Sandi Baru</label>
                         <input id="sandi_baru" name="sandi_baru" type="password" autocomplete="new-password">
                         <?php if (isset($errors['sandi_baru'])) : ?><span class="field__error"><?= e($errors['sandi_baru']) ?></span><?php endif; ?>
                     </div>
                     <div class="field <?= isset($errors['sandi_baru2']) ? 'field--error' : '' ?>">
-                        <label for="sandi_baru2">Ulangi sandi baru</label>
+                        <label for="sandi_baru2">Ulangi Sandi Baru</label>
                         <input id="sandi_baru2" name="sandi_baru2" type="password" autocomplete="new-password">
                         <?php if (isset($errors['sandi_baru2'])) : ?><span class="field__error"><?= e($errors['sandi_baru2']) ?></span><?php endif; ?>
                     </div>
                 </div>
 
                 <div class="form-actions">
-                    <button class="btn btn--primary" type="submit">Simpan perubahan</button>
+                    <button class="btn btn--primary" type="submit">Simpan Perubahan</button>
                     <a class="btn btn--outline" href="<?= BASE ?>/dashboard/<?= e($u['role']) ?>.php">Kembali</a>
                 </div>
             </form>

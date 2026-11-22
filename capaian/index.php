@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../config/auth.php';
 
-$title = 'Capaian bersama';
+$title = 'Capaian Bersama';
 $active = 'capaian';
 
 $rentang = (string)($_GET['rentang'] ?? '6');
@@ -28,21 +28,21 @@ $konteks = $rwNama ? ' · ' . $rwNama : ' · semua RW';
     <div class="container">
         <div class="section__head">
             <div>
-                <p class="eyebrow">Capaian bersama</p>
-                <h1>Dampak yang terbuka untuk semua.</h1>
+                <p class="eyebrow">Capaian Bersama</p>
+                <h1>Dampak yang Terbuka untuk Semua</h1>
                 <p class="lead">Semua angka di halaman ini dihitung langsung dari catatan layanan warga. Tidak ada data pribadi yang ditampilkan, hanya agregat.</p>
             </div>
-            <button class="btn btn--outline no-print" type="button" onclick="window.print()">Cetak halaman</button>
+            <button class="btn btn--outline no-print" type="button" onclick="window.print()">Cetak Halaman</button>
         </div>
 
         <form method="get" class="form-card no-print" style="padding:1rem">
             <div class="form-grid">
                 <div class="field" style="margin-bottom:0">
-                    <label for="rentang">Rentang waktu</label>
+                    <label for="rentang">Rentang Waktu</label>
                     <select id="rentang" name="rentang" onchange="this.form.submit()">
-                        <option value="30" <?= $rentang === '30' ? 'selected' : '' ?>>30 hari terakhir</option>
-                        <option value="6" <?= $rentang === '6' ? 'selected' : '' ?>>6 bulan terakhir</option>
-                        <option value="all" <?= $rentang === 'all' ? 'selected' : '' ?>>Semua waktu</option>
+                        <option value="30" <?= $rentang === '30' ? 'selected' : '' ?>>30 Hari Terakhir</option>
+                        <option value="6" <?= $rentang === '6' ? 'selected' : '' ?>>6 Bulan Terakhir</option>
+                        <option value="all" <?= $rentang === 'all' ? 'selected' : '' ?>>Semua Waktu</option>
                     </select>
                 </div>
                 <div class="field" style="margin-bottom:0">
@@ -61,19 +61,19 @@ $konteks = $rwNama ? ' · ' . $rwNama : ' · semua RW';
         <p class="small muted">Menampilkan data <?= e($labelRentang) ?><?= e($konteks) ?>.</p>
 
         <div class="metric-grid mt-3">
-            <div class="metric metric--sage"><span>Laporan selesai</span><b><?= number_format($s['laporan_selesai']) ?></b><span>dari <?= number_format($s['laporan_total']) ?> laporan</span></div>
-            <div class="metric metric--sky"><span>Laporan ditanggapi</span><b><?= $s['ditanggapi_persen'] ?>%</b><span>laporan diproses atau selesai</span></div>
-            <div class="metric metric--peach"><span>Keluarga terbantu</span><b><?= number_format($s['keluarga_terbantu']) ?></b><span>pengajuan bantuan disetujui</span></div>
-            <div class="metric metric--lavender"><span>Usulan diteruskan</span><b><?= number_format($s['usulan_terwujud']) ?></b><span>usulan warga yang dijalankan</span></div>
-            <div class="metric metric--sky"><span>Sampah terpilah</span><b><?= number_format($s['sampah_kg'], 1, ',', '.') ?> kg</b><span>disetor ke bank sampah</span></div>
-            <div class="metric metric--peach"><span>Paket sembako</span><b><?= number_format($s['sembako_porsi']) ?></b><span>tersalurkan antar warga</span></div>
-            <div class="metric metric--sage"><span>Usaha warga tayang</span><b><?= number_format($s['usaha']) ?></b><span>lapak di etalase RW</span></div>
-            <div class="metric metric--lavender"><span>RW terhubung</span><b><?= number_format($s['rw']) ?></b><span>wilayah yang dilayani</span></div>
+            <div class="metric"><span>Laporan Selesai</span><b><?= number_format($s['laporan_selesai']) ?></b><span>dari <?= number_format($s['laporan_total']) ?> laporan</span></div>
+            <div class="metric"><span>Laporan Ditanggapi</span><b><?= $s['ditanggapi_persen'] ?>%</b><span>laporan diproses atau selesai</span></div>
+            <div class="metric"><span>Keluarga Terbantu</span><b><?= number_format($s['keluarga_terbantu']) ?></b><span>pengajuan bantuan disetujui</span></div>
+            <div class="metric"><span>Usulan Diteruskan</span><b><?= number_format($s['usulan_terwujud']) ?></b><span>usulan warga yang dijalankan</span></div>
+            <div class="metric"><span>Sampah Terpilah</span><b><?= number_format($s['sampah_kg'], 1, ',', '.') ?> kg</b><span>disetor ke bank sampah</span></div>
+            <div class="metric"><span>Paket Sembako</span><b><?= number_format($s['sembako_porsi']) ?></b><span>tersalurkan antar warga</span></div>
+            <div class="metric"><span>Usaha Warga Tayang</span><b><?= number_format($s['usaha']) ?></b><span>lapak di etalase RW</span></div>
+            <div class="metric"><span>RW Terhubung</span><b><?= number_format($s['rw']) ?></b><span>wilayah yang dilayani</span></div>
         </div>
 
         <div class="chart-grid">
             <div class="chart-card">
-                <h4>Sampah terpilah</h4>
+                <h4>Sampah Terpilah</h4>
                 <p class="small muted">Kilogram sampah yang disetor warga, <?= e($labelRentang) ?>.</p>
                 <div class="chart-holder">
                     <canvas data-chart="sampah" role="img" aria-label="Grafik batang sampah terpilah per periode"></canvas>
@@ -81,7 +81,7 @@ $konteks = $rwNama ? ' · ' . $rwNama : ' · semua RW';
                 </div>
             </div>
             <div class="chart-card">
-                <h4>Laporan selesai</h4>
+                <h4>Laporan Selesai</h4>
                 <p class="small muted">Jumlah laporan warga yang tuntas, <?= e($labelRentang) ?>.</p>
                 <div class="chart-holder">
                     <canvas data-chart="laporan" role="img" aria-label="Grafik garis laporan selesai per periode"></canvas>
@@ -91,12 +91,12 @@ $konteks = $rwNama ? ' · ' . $rwNama : ' · semua RW';
         </div>
 
         <div class="panel mt-3">
-            <h3>Bagaimana angka ini dihitung?</h3>
+            <h3>Bagaimana Angka Ini Dihitung?</h3>
             <ul class="list-plain">
-                <li><span>Laporan selesai</span><span class="small muted">jumlah laporan berstatus Selesai</span></li>
-                <li><span>Laporan ditanggapi</span><span class="small muted">laporan berstatus Diproses atau Selesai dibagi seluruh laporan</span></li>
-                <li><span>Keluarga terbantu</span><span class="small muted">pengajuan bantuan berstatus Disetujui</span></li>
-                <li><span>Sampah terpilah</span><span class="small muted">total berat setoran yang tidak dibatalkan</span></li>
+                <li><span>Laporan Selesai</span><span class="small muted">jumlah laporan berstatus Selesai</span></li>
+                <li><span>Laporan Ditanggapi</span><span class="small muted">laporan berstatus Diproses atau Selesai dibagi seluruh laporan</span></li>
+                <li><span>Keluarga Terbantu</span><span class="small muted">pengajuan bantuan berstatus Disetujui</span></li>
+                <li><span>Sampah Terpilah</span><span class="small muted">total berat setoran yang tidak dibatalkan</span></li>
             </ul>
             <p class="small muted mt-2">Data contoh untuk keperluan praktikum. Angka bukan penetapan resmi pemerintah.</p>
         </div>

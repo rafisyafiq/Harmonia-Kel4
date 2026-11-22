@@ -1,6 +1,6 @@
 <?php /* Komponen bersama: arti status. */ ?>
 <details class="legend">
-    <summary>Arti status</summary>
+    <summary>Arti Status</summary>
     <ul class="list-plain">
         <li><span>Pengajuan: Diajukan</span><span class="small muted">menunggu diperiksa petugas</span></li>
         <li><span>Pengajuan: Diverifikasi</span><span class="small muted">data sudah dicek, menunggu keputusan</span></li>

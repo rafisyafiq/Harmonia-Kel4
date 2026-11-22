@@ -5,7 +5,7 @@ refresh_sembako($pdo);
 
 
 
-$title = 'Bantuan sosial';
+$title = 'Bantuan Sosial';
 $st = $pdo->prepare("SELECT f.*, us.nama AS donor FROM sembako_shares f JOIN users us ON us.id = f.donor_id
     WHERE f.rw_id = ? AND f.status = 'tersedia' ORDER BY f.batas_ambil ASC");
 $st->execute([$u['rw_id']]);
@@ -21,14 +21,14 @@ $milikSaya = $st->fetchAll();
     <div class="container">
         <div class="dash__head">
             <div>
-                <p class="eyebrow">Bantuan sosial · SDGs 1 &amp; 11</p>
-                <h1>Berbagi Sembako, kurangi terbuang.</h1>
+                <p class="eyebrow">Bantuan Sosial · Sdgs 1 &amp; 11</p>
+                <h1>Berbagi Sembako, Kurangi Terbuang</h1>
                 <p class="small">Hanya untuk warga RW Anda. Satu orang maksimal 2 porsi per postingan.</p>
             </div>
-            <a class="btn btn--primary btn--sm" href="<?= BASE ?>/sembako/bagikan.php">Bagikan sembako</a>
+            <a class="btn btn--primary btn--sm" href="<?= BASE ?>/sembako/bagikan.php">Bagikan Sembako</a>
         </div>
 
-        <h2 class="mt-2">Tersedia sekarang</h2>
+        <h2 class="mt-2">Tersedia Sekarang</h2>
         <?php if ($tersedia) : ?>
             <div class="lapak-grid mt-2">
                 <?php foreach ($tersedia as $f) : ?>
@@ -44,8 +44,8 @@ $milikSaya = $st->fetchAll();
                             <div class="form-actions">
                                 <label class="sr-only" for="porsi-<?= (int)$f['id'] ?>">Porsi</label>
                                 <select id="porsi-<?= (int)$f['id'] ?>" data-porsi="<?= (int)$f['id'] ?>">
-                                    <option value="1">1 porsi</option>
-                                    <?php if ((int)$f['porsi_sisa'] >= 2) : ?><option value="2">2 porsi</option><?php endif; ?>
+                                    <option value="1">1 Porsi</option>
+                                    <?php if ((int)$f['porsi_sisa'] >= 2) : ?><option value="2">2 Porsi</option><?php endif; ?>
                                 </select>
                                 <button class="btn btn--primary btn--sm" type="button"
                                         data-ambil="<?= (int)$f['id'] ?>"
@@ -60,15 +60,15 @@ $milikSaya = $st->fetchAll();
                 <?php endforeach; ?>
             </div>
         <?php else : ?>
-            <div class="empty mt-2"><b>Belum ada Sembako tersedia.</b>Bagikan sembako layak berlebih untuk tetangga.</div>
+            <div class="empty mt-2"><b>Belum Ada Sembako Tersedia</b>Bagikan sembako layak berlebih untuk tetangga.</div>
         <?php endif; ?>
 
         <div class="panel mt-3">
-            <h3>Postingan saya</h3>
+            <h3>Postingan Saya</h3>
             <?php if ($milikSaya) : ?>
                 <div class="table-wrap">
                     <table class="data">
-                        <thead><tr><th>Sembako</th><th>Porsi</th><th>Batas ambil</th><th>Status</th></tr></thead>
+                        <thead><tr><th>Sembako</th><th>Porsi</th><th>Batas Ambil</th><th>Status</th></tr></thead>
                         <tbody>
                         <?php foreach ($milikSaya as $f) : ?>
                             <tr>

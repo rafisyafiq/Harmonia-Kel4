@@ -469,11 +469,11 @@ INSERT INTO safety_checks (id, user_id, shelter_id, status, catatan, created_at)
 (14,18,3,'aman',NULL,DATE_SUB(NOW(), INTERVAL 1 HOUR));
 
 INSERT INTO businesses (id, user_id, nama_usaha, kategori, deskripsi, foto, kontak, status, alasan_tolak, tampil, created_at) VALUES
-(1,3,'Warung Bu Siti','makanan','Masakan rumahan harian: nasi, sayur, dan lauk. Melayani pesanan untuk acara kecil di lingkungan RW.','assets/img/lapak-placeholder.svg','081230000000','tayang',NULL,1,'2026-10-10 09:00:00'),
-(2,9,'Servis Sepeda Pak Budi','jasa','Servis dan perbaikan sepeda, ganti ban, serta penyetelan rem. Buka setiap hari mulai pukul 08.00.','assets/img/lapak-placeholder.svg','081230001111','tayang',NULL,1,'2026-10-11 09:00:00'),
-(3,13,'Rajut Ibu Rina','kerajinan','Tas dan dompet rajut buatan tangan dengan bahan katun lokal. Bisa pesan warna sesuai keinginan.','assets/img/lapak-placeholder.svg','081230002222','tayang',NULL,1,'2026-10-12 09:00:00'),
-(4,17,'Sayur Segar Pak Agus','pertanian','Sayuran hidroponik yang dipanen setiap pagi: selada, kangkung, dan bayam.','assets/img/lapak-placeholder.svg','081230003333','tayang',NULL,1,'2026-10-13 09:00:00'),
-(5,21,'Katering Dewi','makanan','Katering harian untuk keluarga dan kantor, tersedia menu rendah minyak.','assets/img/lapak-placeholder.svg','081230004444','tayang',NULL,1,'2026-10-14 09:00:00'),
+(1,3,'Warung Bu Siti','makanan','Masakan rumahan harian: nasi, sayur, dan lauk. Melayani pesanan untuk acara kecil di lingkungan RW.','assets/images/warteg.jpg','081230000000','tayang',NULL,1,'2026-10-10 09:00:00'),
+(2,9,'Servis Sepeda Pak Budi','jasa','Servis dan perbaikan sepeda, ganti ban, serta penyetelan rem. Buka setiap hari mulai pukul 08.00.','assets/images/Bikes.jpg','081230001111','tayang',NULL,1,'2026-10-11 09:00:00'),
+(3,13,'Rajut Ibu Rina','kerajinan','Tas dan dompet rajut buatan tangan dengan bahan katun lokal. Bisa pesan warna sesuai keinginan.','assets/images/TokoRajut.jpg','081230002222','tayang',NULL,1,'2026-10-12 09:00:00'),
+(4,17,'Sayur Segar Pak Agus','pertanian','Sayuran hidroponik yang dipanen setiap pagi: selada, kangkung, dan bayam.','assets/images/sayur.jpg','081230003333','tayang',NULL,1,'2026-10-13 09:00:00'),
+(5,21,'Katering Dewi','makanan','Katering harian untuk keluarga dan kantor, tersedia menu rendah minyak.','assets/images/catering.jpg','081230004444','tayang',NULL,1,'2026-10-14 09:00:00'),
 (6,25,'Keripik Singkong Bu Lilis','makanan','Keripik singkong aneka rasa, digoreng tanpa pengawet. Tersedia kemasan 200 gram.','assets/img/lapak-placeholder.svg','081230005555','menunggu',NULL,1,'2026-10-15 09:00:00'),
 (7,29,'Laundry Kilat Pak Eko','jasa','Laundry harian dengan layanan antar jemput untuk warga sekitar RW.','assets/img/lapak-placeholder.svg','081230006666','menunggu',NULL,1,'2026-10-16 09:00:00'),
 (8,33,'Meja Kayu Pak Tono','kerajinan','Meja dan rak kayu sederhana untuk rumah, dibuat sesuai ukuran pesanan.','assets/img/lapak-placeholder.svg','081230007777','ditolak','Foto produk belum jelas, silakan unggah ulang.',1,'2026-10-17 09:00:00');

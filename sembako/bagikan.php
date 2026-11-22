@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/auth.php';
 $u = require_role('warga');
 
-$title = 'Bagikan sembako';
+$title = 'Bagikan Sembako';
 $errors = [];
 $defaultBatas = date('Y-m-d\TH:i', strtotime('+6 hours'));
 
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <section class="form-page">
     <div class="container">
         <div class="form-card form-card--narrow">
-            <h1>Bagikan sembako.</h1>
+            <h1>Bagikan Sembako</h1>
             <p class="small">Hanya Sembako layak konsumsi. Porsi akan berkurang otomatis saat diambil warga lain.</p>
 
             <?php if ($errors) : ?>
@@ -56,12 +56,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="form-grid">
                     <div class="field <?= isset($errors['porsi_total']) ? 'field--error' : '' ?>">
-                        <label for="porsi_total">Jumlah porsi</label>
+                        <label for="porsi_total">Jumlah Porsi</label>
                         <input id="porsi_total" name="porsi_total" type="number" min="1" max="100" required value="<?= old('porsi_total', '5') ?>">
                         <?php if (isset($errors['porsi_total'])) : ?><span class="field__error"><?= e($errors['porsi_total']) ?></span><?php endif; ?>
                     </div>
                     <div class="field <?= isset($errors['batas_ambil']) ? 'field--error' : '' ?>">
-                        <label for="batas_ambil">Batas ambil</label>
+                        <label for="batas_ambil">Batas Ambil</label>
                         <input id="batas_ambil" name="batas_ambil" type="datetime-local" required value="<?= old('batas_ambil', $defaultBatas) ?>">
                         <?php if (isset($errors['batas_ambil'])) : ?><span class="field__error"><?= e($errors['batas_ambil']) ?></span><?php endif; ?>
                     </div>

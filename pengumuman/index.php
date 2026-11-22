@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../config/auth.php';
 
-$title = 'Pengumuman & agenda';
+$title = 'Pengumuman & Agenda';
 $active = 'pengumuman';
 $tipeList = ['pengumuman', 'agenda', 'tips'];
 $fTipe = in_array($_GET['tipe'] ?? '', $tipeList, true) ? $_GET['tipe'] : '';
@@ -40,11 +40,11 @@ $u = user();
         <div class="section__head">
             <div>
                 <p class="eyebrow">Informasi RW</p>
-                <h1>Pengumuman &amp; agenda.</h1>
+                <h1>Pengumuman &amp; Agenda</h1>
                 <p class="lead">Jadwal angkut sampah, pembagian pangan, posyandu, pelatihan usaha, dan peringatan cuaca dari petugas RW.</p>
             </div>
             <?php if ($u && in_array($u['role'], ['petugas', 'admin'], true)) : ?>
-                <a class="btn btn--primary" href="<?= BASE ?>/pengumuman/kelola.php">Kelola pengumuman</a>
+                <a class="btn btn--primary" href="<?= BASE ?>/pengumuman/kelola.php">Kelola Pengumuman</a>
             <?php endif; ?>
         </div>
 
@@ -53,7 +53,7 @@ $u = user();
                 <div class="field" style="margin-bottom:0">
                     <label for="tipe">Jenis</label>
                     <select id="tipe" name="tipe" onchange="this.form.submit()">
-                        <option value="">Semua jenis</option>
+                        <option value="">Semua Jenis</option>
                         <?php foreach ($tipeList as $t) : ?>
                             <option value="<?= $t ?>" <?= $fTipe === $t ? 'selected' : '' ?>><?= ucfirst($t) ?></option>
                         <?php endforeach; ?>
@@ -92,13 +92,13 @@ $u = user();
                         <?php endforeach; ?>
                     </div>
                 <?php else : ?>
-                    <div class="empty"><b>Belum ada pengumuman.</b>Informasi dari petugas RW akan tampil di sini.</div>
+                    <div class="empty"><b>Belum Ada Pengumuman</b>Informasi dari petugas RW akan tampil di sini.</div>
                 <?php endif; ?>
             </div>
 
             <div>
                 <div class="panel">
-                    <h3>Agenda mendatang</h3>
+                    <h3>Agenda Mendatang</h3>
                     <?php if ($agenda) : ?>
                         <ul class="list-plain">
                             <?php foreach ($agenda as $a) : ?>

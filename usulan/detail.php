@@ -47,16 +47,16 @@ $title = $p['judul'];
         <div class="dash-grid">
             <div>
                 <div class="panel">
-                    <h3>Isi usulan</h3>
+                    <h3>Isi Usulan</h3>
                     <p><?= nl2br(e($p['deskripsi'])) ?></p>
                     <?php if ($p['catatan_petugas']) : ?>
-                        <div class="alert alert--info"><b>Catatan petugas:</b> <?= e($p['catatan_petugas']) ?></div>
+                        <div class="alert alert--info"><b>Catatan Petugas:</b> <?= e($p['catatan_petugas']) ?></div>
                     <?php endif; ?>
                 </div>
 
                 <?php if ($bolehProses) : ?>
                     <div class="panel">
-                        <h3>Proses usulan</h3>
+                        <h3>Proses Usulan</h3>
                         <form method="post" action="<?= BASE ?>/usulan/proses.php" data-busy>
                             <?= csrf_field() ?>
                             <input type="hidden" name="id" value="<?= $id ?>">
@@ -84,7 +84,7 @@ $title = $p['judul'];
 
             <div>
                 <div class="panel">
-                    <h3>Dukungan warga</h3>
+                    <h3>Dukungan Warga</h3>
                     <p><b id="dukungan-<?= $id ?>"><?= $jumlah ?></b> dari <?= $target ?> dukungan</p>
                     <div class="progress" aria-hidden="true"><span id="progress-<?= $id ?>" style="width:<?= $persen ?>%"></span></div>
                     <p class="mt-2" id="status-usulan-<?= $id ?>"><?= status_chip($p['status']) ?></p>
@@ -108,12 +108,12 @@ $title = $p['judul'];
 
                 <?php if ($u && (int)$p['user_id'] === (int)$u['id'] && $jumlah === 0) : ?>
                     <div class="panel">
-                        <h3>Hapus usulan</h3>
+                        <h3>Hapus Usulan</h3>
                         <p class="small">Usulan bisa dihapus selama belum ada dukungan.</p>
                         <form method="post" action="<?= BASE ?>/usulan/hapus.php" onsubmit="return confirm('Hapus usulan ini?')">
                             <?= csrf_field() ?>
                             <input type="hidden" name="id" value="<?= $id ?>">
-                            <button class="btn btn--danger btn--sm" type="submit">Hapus usulan</button>
+                            <button class="btn btn--danger btn--sm" type="submit">Hapus Usulan</button>
                         </form>
                     </div>
                 <?php endif; ?>

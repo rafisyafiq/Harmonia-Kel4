@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/auth.php';
 $u = require_role('warga');
 
-$title = 'Buat laporan';
+$title = 'Buat Laporan';
 $kategoriList = ['lampu' => 'Lampu jalan', 'selokan' => 'Selokan', 'sampah' => 'Sampah', 'jalan' => 'Jalan', 'lainnya' => 'Lainnya'];
 $errors = [];
 
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <section class="form-page">
     <div class="container">
         <div class="form-card form-card--narrow">
-            <h1>Buat laporan.</h1>
+            <h1>Buat Laporan</h1>
             <p class="small">Laporan tampil di halaman publik tanpa nama pelapor. RW otomatis diambil dari akun Anda (<?= e($u['rw_id'] ? 'RW ' . str_pad((string)$u['rw_id'], 2, '0', STR_PAD_LEFT) : '-') ?>).</p>
 
             <?php if ($errors) : ?>
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="field <?= isset($errors['kategori']) ? 'field--error' : '' ?>">
                     <label for="kategori">Kategori</label>
                     <select id="kategori" name="kategori" required>
-                        <option value="">Pilih kategori</option>
+                        <option value="">Pilih Kategori</option>
                         <?php foreach ($kategoriList as $k => $label) : ?>
                             <option value="<?= $k ?>" <?= ($_POST['kategori'] ?? '') === $k ? 'selected' : '' ?>><?= e($label) ?></option>
                         <?php endforeach; ?>
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="form-actions">
-                    <button class="btn btn--primary" type="submit">Kirim laporan</button>
+                    <button class="btn btn--primary" type="submit">Kirim Laporan</button>
                     <a class="btn btn--outline" href="<?= BASE ?>/lapor/index.php">Kembali</a>
                 </div>
             </form>

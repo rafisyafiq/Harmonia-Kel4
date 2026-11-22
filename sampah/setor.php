@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/auth.php';
 $u = require_role('petugas', 'admin');
 
-$title = 'Catat setoran sampah';
+$title = 'Catat Setoran Sampah';
 $errors = [];
 $rwId = $u['role'] === 'admin' ? null : (int)$u['rw_id'];
 
@@ -69,8 +69,8 @@ $antrean = $st->fetchAll();
     <div class="container">
         <div class="dash__head">
             <div>
-                <p class="eyebrow">Bank sampah · Petugas</p>
-                <h1>Catat setoran dan cairkan saldo.</h1>
+                <p class="eyebrow">Bank Sampah · Petugas</p>
+                <h1>Catat Setoran dan Cairkan Saldo</h1>
                 <p class="small">Nilai dihitung di server dari berat × harga jenis sampah.</p>
             </div>
         </div>
@@ -82,13 +82,13 @@ $antrean = $st->fetchAll();
         <div class="dash-grid">
             <div>
                 <div class="panel">
-                    <h3>Setoran baru</h3>
+                    <h3>Setoran Baru</h3>
                     <form method="post" data-busy>
                         <?= csrf_field() ?>
                         <div class="field <?= isset($errors['user_id']) ? 'field--error' : '' ?>">
                             <label for="user_id">Warga</label>
                             <select id="user_id" name="user_id" required>
-                                <option value="">Pilih warga</option>
+                                <option value="">Pilih Warga</option>
                                 <?php foreach ($warga as $w) : ?>
                                     <option value="<?= (int)$w['id'] ?>" <?= (int)($_POST['user_id'] ?? 0) === (int)$w['id'] ? 'selected' : '' ?>><?= e($w['nama']) ?> · <?= e($w['rw'] ?? '-') ?></option>
                                 <?php endforeach; ?>
@@ -99,7 +99,7 @@ $antrean = $st->fetchAll();
                             <div class="field <?= isset($errors['waste_type_id']) ? 'field--error' : '' ?>">
                                 <label for="waste_type_id">Jenis</label>
                                 <select id="waste_type_id" name="waste_type_id" required>
-                                    <option value="">Pilih jenis</option>
+                                    <option value="">Pilih Jenis</option>
                                     <?php foreach ($jenis as $j) : ?>
                                         <option value="<?= (int)$j['id'] ?>" <?= (int)($_POST['waste_type_id'] ?? 0) === (int)$j['id'] ? 'selected' : '' ?>><?= e($j['nama']) ?> · <?= rupiah($j['harga_per_kg']) ?>/kg</option>
                                     <?php endforeach; ?>
@@ -112,14 +112,14 @@ $antrean = $st->fetchAll();
                                 <?php if (isset($errors['berat_kg'])) : ?><span class="field__error"><?= e($errors['berat_kg']) ?></span><?php endif; ?>
                             </div>
                         </div>
-                        <button class="btn btn--primary" type="submit">Simpan setoran</button>
+                        <button class="btn btn--primary" type="submit">Simpan Setoran</button>
                     </form>
                 </div>
             </div>
 
             <div>
                 <div class="panel">
-                    <h3>Penarikan menunggu</h3>
+                    <h3>Penarikan Menunggu</h3>
                     <?php if ($antrean) : ?>
                         <div class="table-wrap">
                             <table class="data">
@@ -143,7 +143,7 @@ $antrean = $st->fetchAll();
                             </table>
                         </div>
                     <?php else : ?>
-                        <div class="empty"><b>Tidak ada penarikan.</b>Antrean pencairan kosong.</div>
+                        <div class="empty"><b>Tidak Ada Penarikan</b>Antrean pencairan kosong.</div>
                     <?php endif; ?>
                 </div>
             </div>

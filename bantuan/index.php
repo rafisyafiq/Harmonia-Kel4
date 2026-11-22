@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/auth.php';
 $u = require_login();
 
-$title = 'Pengajuan bantuan';
+$title = 'Pengajuan Bantuan';
 $statusList = ['diajukan', 'diverifikasi', 'disetujui', 'ditolak'];
 $jenisList = ['pangan', 'tunai', 'kesehatan', 'pendidikan'];
 $fStatus = in_array($_GET['status'] ?? '', $statusList, true) ? $_GET['status'] : '';
@@ -49,11 +49,11 @@ $data = $st->fetchAll();
         <div class="dash__head">
             <div>
                 <p class="eyebrow"><?= $u['role'] === 'warga' ? 'Pengajuan saya' : 'Antrean pengajuan' ?></p>
-                <h1><?= $u['role'] === 'warga' ? 'Bantuan yang saya ajukan.' : 'Pengajuan yang menunggu.' ?></h1>
+                <h1><?= $u['role'] === 'warga' ? 'Bantuan yang Saya Ajukan' : 'Pengajuan yang Menunggu' ?></h1>
                 <p class="small"><?= $u['role'] === 'warga' ? 'Pantau status dan catatan petugas.' : 'Warga berstatus rentan diurutkan lebih dulu, lalu yang paling lama menunggu.' ?></p>
             </div>
             <?php if ($u['role'] === 'warga' && file_exists(ROOT_DIR . '/bantuan/ajukan.php')) : ?>
-                <a class="btn btn--primary btn--sm" href="<?= BASE ?>/bantuan/ajukan.php">Ajukan baru</a>
+                <a class="btn btn--primary btn--sm" href="<?= BASE ?>/bantuan/ajukan.php">Ajukan Baru</a>
             <?php endif; ?>
         </div>
 
@@ -64,7 +64,7 @@ $data = $st->fetchAll();
                 <div class="field" style="margin-bottom:0">
                     <label for="status">Status</label>
                     <select id="status" name="status" onchange="this.form.submit()">
-                        <option value="">Semua status</option>
+                        <option value="">Semua Status</option>
                         <?php foreach ($statusList as $s) : ?>
                             <option value="<?= $s ?>" <?= $fStatus === $s ? 'selected' : '' ?>><?= e(STATUS_LABEL[$s]) ?></option>
                         <?php endforeach; ?>
@@ -73,7 +73,7 @@ $data = $st->fetchAll();
                 <div class="field" style="margin-bottom:0">
                     <label for="jenis">Jenis</label>
                     <select id="jenis" name="jenis" onchange="this.form.submit()">
-                        <option value="">Semua jenis</option>
+                        <option value="">Semua Jenis</option>
                         <?php foreach ($jenisList as $j) : ?>
                             <option value="<?= $j ?>" <?= $fJenis === $j ? 'selected' : '' ?>><?= ucfirst($j) ?></option>
                         <?php endforeach; ?>
@@ -109,7 +109,7 @@ $data = $st->fetchAll();
                 </table>
             </div>
         <?php else : ?>
-            <div class="empty mt-3"><b>Belum ada pengajuan.</b><?= $u['role'] === 'warga' ? 'Mulai dengan mengecek kondisi keluarga.' : 'Antrean kosong untuk filter ini.' ?></div>
+            <div class="empty mt-3"><b>Belum Ada Pengajuan</b><?= $u['role'] === 'warga' ? 'Mulai dengan mengecek kondisi keluarga.' : 'Antrean kosong untuk filter ini.' ?></div>
         <?php endif; ?>
     </div>
 </section>

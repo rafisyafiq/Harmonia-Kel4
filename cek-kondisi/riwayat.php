@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/auth.php';
 $u = require_role('warga', 'petugas', 'admin');
 
-$title = 'Riwayat cek kondisi';
+$title = 'Riwayat Cek Kondisi';
 
 $sql = 'SELECT f.*, us.nama AS warga, rw.nama AS rw
     FROM family_checks f JOIN users us ON us.id = f.user_id LEFT JOIN rw ON rw.id = us.rw_id';
@@ -25,11 +25,11 @@ $data = $st->fetchAll();
     <div class="container">
         <div class="dash__head">
             <div>
-                <p class="eyebrow">Riwayat cek kondisi</p>
-                <h1><?= $u['role'] === 'warga' ? 'Riwayat perhitungan saya.' : 'Riwayat warga.' ?></h1>
+                <p class="eyebrow">Riwayat Cek Kondisi</p>
+                <h1><?= $u['role'] === 'warga' ? 'Riwayat Perhitungan Saya' : 'Riwayat Warga' ?></h1>
                 <p class="small">Seratus perhitungan terakhir, terbaru di atas.</p>
             </div>
-            <a class="btn btn--outline btn--sm" href="<?= BASE ?>/cek-kondisi/index.php">Cek baru</a>
+            <a class="btn btn--outline btn--sm" href="<?= BASE ?>/cek-kondisi/index.php">Cek Baru</a>
         </div>
 
         <?php if ($data) : ?>
@@ -37,7 +37,7 @@ $data = $st->fetchAll();
                 <table class="data">
                     <thead><tr>
                         <?php if ($u['role'] !== 'warga') : ?><th>Warga</th><th>RW</th><?php endif; ?>
-                        <th>Tanggal</th><th>Anggota</th><th>Pengeluaran</th><th>Per kapita</th><th>Status</th>
+                        <th>Tanggal</th><th>Anggota</th><th>Pengeluaran</th><th>Per Kapita</th><th>Status</th>
                     </tr></thead>
                     <tbody>
                     <?php foreach ($data as $r) : ?>
@@ -57,7 +57,7 @@ $data = $st->fetchAll();
                 </table>
             </div>
         <?php else : ?>
-            <div class="empty"><b>Belum ada data.</b>Riwayat muncul setelah ada perhitungan.</div>
+            <div class="empty"><b>Belum Ada Data</b>Riwayat muncul setelah ada perhitungan.</div>
         <?php endif; ?>
     </div>
 </section>

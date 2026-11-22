@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container auth__grid">
         <div class="auth__aside">
             <p class="eyebrow eyebrow--light">Masuk</p>
-            <h2>Satu akun, semua layanan RW.</h2>
+            <h2>Satu Akun, Semua Layanan RW</h2>
             <p>Gunakan akun warga untuk layanan pribadi. Akun petugas dan admin dibuat oleh admin RW.</p>
             <ul>
                 <li>Warga: cek kondisi, ajukan bantuan, lapor, dan setor sampah.</li>
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form class="form-card" method="post" data-busy>
             <?= csrf_field() ?>
             <h2>Masuk</h2>
-            <p class="small">Belum punya akun? <a href="<?= BASE ?>/auth/register.php">Daftar sebagai warga</a>.</p>
+            <p class="small">Belum punya akun? <a href="<?= BASE ?>/auth/register.php">Daftar sebagai Warga</a>.</p>
 
             <?php if ($error) : ?>
                 <div class="alert alert--error" role="alert"><?= e($error) ?></div>

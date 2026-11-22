@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/auth.php';
 $u = require_role('petugas', 'admin');
 
-$title = 'Form pengumuman';
+$title = 'Form Pengumuman';
 $tipeList = ['pengumuman' => 'Pengumuman', 'agenda' => 'Agenda', 'tips' => 'Tips'];
 $errors = [];
 $id = (int)($_GET['id'] ?? $_POST['id'] ?? 0);
@@ -102,7 +102,7 @@ $berlakuVal = $val('berlaku_sampai') ? date('Y-m-d', strtotime((string)$val('ber
 <section class="form-page">
     <div class="container">
         <div class="form-card form-card--narrow">
-            <h1><?= $id ? 'Ubah pengumuman.' : 'Pengumuman baru.' ?></h1>
+            <h1><?= $id ? 'Ubah Pengumuman' : 'Pengumuman Baru' ?></h1>
             <p class="small">Pengumuman tampil untuk warga RW terkait. Pilih "Semua RW" hanya bila Anda admin.</p>
 
             <?php if ($errors) : ?>

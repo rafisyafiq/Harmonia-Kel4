@@ -19,16 +19,16 @@ $navItems = [
 <title><?= e($title ?? 'Beranda') ?> · HARMONIA</title>
 <meta name="description" content="HARMONIA — satu pintu layanan warga: cek kondisi keluarga, pengajuan bantuan, laporan lingkungan, bank sampah, bantuan sosial (sembako), dan lapak usaha warga.">
 <link rel="stylesheet" href="<?= BASE ?>/assets/css/style.css">
-<link rel="icon" href="<?= BASE ?>/assets/img/favicon.svg">
+<link rel="icon" href="<?= BASE ?>/assets/images/Logo.png">
 </head>
-<body>
+<body<?= !empty($bodyClass) ? ' class="' . e($bodyClass) . '"' : '' ?>>
 <script>document.documentElement.classList.add('js');</script>
-<a class="skip-link" href="#main">Lewati ke konten</a>
+<a class="skip-link" href="#main">Lewati ke Konten</a>
 
 <header class="site-header">
     <div class="container nav">
         <a class="brand" href="<?= BASE ?>/index.php">
-            <span class="brand__mark" aria-hidden="true">H</span>
+            <img class="brand__mark" src="<?= BASE ?>/assets/images/Logo.png" alt="Logo Harmonia">
             <span class="brand__text">HARMONIA<small>A Better Life in a Better Community</small></span>
         </a>
 
@@ -37,12 +37,14 @@ $navItems = [
         </button>
 
         <nav id="nav-menu" class="nav__menu" aria-label="Navigasi utama">
-            <?php foreach ($navItems as [$key, $label, $file]) :
-                if (!file_exists(ROOT_DIR . $file)) {
-                    continue;
-                } ?>
-                <a href="<?= BASE . $file ?>" <?= $active === $key ? 'aria-current="page"' : '' ?>><?= e($label) ?></a>
-            <?php endforeach; ?>
+            <?php if (empty($hideNavMenu)) : ?>
+                <?php foreach ($navItems as [$key, $label, $file]) :
+                    if (!file_exists(ROOT_DIR . $file)) {
+                        continue;
+                    } ?>
+                    <a href="<?= BASE . $file ?>" <?= $active === $key ? 'aria-current="page"' : '' ?>><?= e($label) ?></a>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </nav>
 
         <div class="nav__actions">

@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/auth.php';
 $u = require_role('admin');
 
-$title = 'Harga sampah';
+$title = 'Harga Sampah';
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -56,7 +56,7 @@ $data = $pdo->query('SELECT wt.*, (SELECT COUNT(*) FROM waste_deposits d WHERE d
         <div class="dash__head">
             <div>
                 <p class="eyebrow">Administrasi</p>
-                <h1>Harga bank sampah.</h1>
+                <h1>Harga Bank Sampah</h1>
                 <p class="small">Perubahan harga hanya berlaku untuk setoran baru. Setoran lama menyimpan nilainya.</p>
             </div>
             <a class="btn btn--ghost btn--sm" href="<?= BASE ?>/dashboard/admin.php">Dashboard</a>
@@ -67,11 +67,11 @@ $data = $pdo->query('SELECT wt.*, (SELECT COUNT(*) FROM waste_deposits d WHERE d
         <?php endif; ?>
 
         <div class="panel">
-            <h3>Tambah jenis</h3>
+            <h3>Tambah Jenis</h3>
             <form method="post" class="form-grid" data-busy>
                 <?= csrf_field() ?>
                 <div class="field <?= isset($errors['nama']) ? 'field--error' : '' ?>">
-                    <label for="nama">Nama jenis</label>
+                    <label for="nama">Nama Jenis</label>
                     <input id="nama" name="nama" required minlength="2" maxlength="40" value="<?= old('nama') ?>">
                     <?php if (isset($errors['nama'])) : ?><span class="field__error"><?= e($errors['nama']) ?></span><?php endif; ?>
                 </div>
@@ -88,7 +88,7 @@ $data = $pdo->query('SELECT wt.*, (SELECT COUNT(*) FROM waste_deposits d WHERE d
 
         <div class="table-wrap mt-3">
             <table class="data">
-                <thead><tr><th>Jenis</th><th>Harga/kg</th><th>Setoran</th><th>Aksi</th></tr></thead>
+                <thead><tr><th>Jenis</th><th>Harga/Kg</th><th>Setoran</th><th>Aksi</th></tr></thead>
                 <tbody>
                 <?php foreach ($data as $d) : ?>
                     <tr>

@@ -61,7 +61,7 @@ $data = $pdo->query('SELECT rw.*,
         <div class="dash__head">
             <div>
                 <p class="eyebrow">Administrasi</p>
-                <h1>Kelola RW.</h1>
+                <h1>Kelola RW</h1>
                 <p class="small">RW yang masih punya pengguna atau laporan tidak dapat dihapus.</p>
             </div>
             <a class="btn btn--ghost btn--sm" href="<?= BASE ?>/dashboard/admin.php">Dashboard</a>

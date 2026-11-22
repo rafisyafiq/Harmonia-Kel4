@@ -52,8 +52,8 @@ const STATUS_LABEL = [
     'dibuka' => 'Dibuka', 'tercapai' => 'Tercapai', 'diteruskan' => 'Diteruskan',
     'menunggu' => 'Menunggu', 'tayang' => 'Tayang',
     'tersedia' => 'Tersedia', 'habis' => 'Habis', 'kedaluwarsa' => 'Kedaluwarsa',
-    'aman' => 'Aman', 'butuh_bantuan' => 'Butuh bantuan',
-    'rentan' => 'Rentan', 'dipantau' => 'Perlu dipantau', 'cukup' => 'Cukup',
+    'aman' => 'Aman', 'butuh_bantuan' => 'Butuh Bantuan',
+    'rentan' => 'Rentan', 'dipantau' => 'Perlu Dipantau', 'cukup' => 'Cukup',
     'dicairkan' => 'Dicairkan',
 ];
 
@@ -270,7 +270,10 @@ function upload_foto(array $file, ?string &$error = null): ?string
 
 function foto_url(?string $path): string
 {
-    return BASE . '/' . ltrim($path ?: 'assets/img/lapak-placeholder.svg', '/');
+    $path = $path ?: 'assets/img/lapak-placeholder.svg';
+    $segments = explode('/', $path);
+    $encoded = implode('/', array_map('rawurlencode', $segments));
+    return BASE . '/' . ltrim($encoded, '/');
 }
 
 /* ---------------- komponen bersama (PRD 1.1) ---------------- */

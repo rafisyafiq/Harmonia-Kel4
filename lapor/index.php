@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../config/auth.php';
 
-$title = 'Laporan warga';
+$title = 'Laporan Warga';
 $active = 'lapor';
 $kategoriList = ['lampu', 'selokan', 'sampah', 'jalan', 'lainnya'];
 $statusList = ['baru', 'diproses', 'selesai'];
@@ -57,23 +57,23 @@ $query = $_GET;
     <div class="container">
         <div class="section__head">
             <div>
-                <p class="eyebrow">Lapor warga · SDGs 11</p>
-                <h1>Masalah lingkungan, ditangani bersama.</h1>
+                <p class="eyebrow">Lapor Warga · Sdgs 11</p>
+                <h1>Masalah Lingkungan, Ditangani Bersama</h1>
                 <p class="lead">Semua laporan tampil tanpa nama pelapor. Simpan kode laporan untuk memantau statusnya kapan saja.</p>
             </div>
             <?php if (user() && user()['role'] === 'warga') : ?>
-                <a class="btn btn--primary" href="<?= BASE ?>/lapor/buat.php">Buat laporan</a>
+                <a class="btn btn--primary" href="<?= BASE ?>/lapor/buat.php">Buat Laporan</a>
             <?php endif; ?>
         </div>
 
         <div class="dash-grid">
             <div>
                 <form method="get" class="form-card" style="padding:1rem">
-                    <div class="form-grid">
+                    <div class="form-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr))">
                         <div class="field" style="margin-bottom:0">
                             <label for="kategori">Kategori</label>
                             <select id="kategori" name="kategori" onchange="this.form.submit()">
-                                <option value="">Semua kategori</option>
+                                <option value="">Semua Kategori</option>
                                 <?php foreach ($kategoriList as $k) : ?>
                                     <option value="<?= $k ?>" <?= $fKategori === $k ? 'selected' : '' ?>><?= ucfirst($k) ?></option>
                                 <?php endforeach; ?>
@@ -82,7 +82,7 @@ $query = $_GET;
                         <div class="field" style="margin-bottom:0">
                             <label for="status">Status</label>
                             <select id="status" name="status" onchange="this.form.submit()">
-                                <option value="">Semua status</option>
+                                <option value="">Semua Status</option>
                                 <?php foreach ($statusList as $s) : ?>
                                     <option value="<?= $s ?>" <?= $fStatus === $s ? 'selected' : '' ?>><?= e(STATUS_LABEL[$s]) ?></option>
                                 <?php endforeach; ?>
@@ -128,24 +128,24 @@ $query = $_GET;
                         </div>
                     <?php endif; ?>
                 <?php else : ?>
-                    <div class="empty mt-2"><b>Belum ada laporan.</b>Laporan yang masuk akan tampil di sini tanpa nama pelapor.</div>
+                    <div class="empty mt-2"><b>Belum Ada Laporan</b>Laporan yang masuk akan tampil di sini tanpa nama pelapor.</div>
                 <?php endif; ?>
             </div>
 
             <div>
                 <div class="panel">
-                    <h3>Cari kode laporan</h3>
+                    <h3>Cari Kode Laporan</h3>
                     <p class="small">Masukkan kode yang Anda terima saat membuat laporan.</p>
                     <form method="get">
                         <div class="field">
-                            <label for="kode" class="sr-only">Kode laporan</label>
+                            <label for="kode" class="sr-only">Kode Laporan</label>
                             <input id="kode" name="kode" placeholder="LPR-0142" maxlength="20" required>
                         </div>
-                        <button class="btn btn--outline btn--sm" type="submit">Lacak laporan</button>
+                        <button class="btn btn--outline btn--sm" type="submit">Lacak Laporan</button>
                     </form>
                 </div>
                 <div class="panel">
-                    <h3>Arti status</h3>
+                    <h3>Arti Status</h3>
                     <?php include ROOT_DIR . '/includes/legenda_status.php'; ?>
                 </div>
             </div>

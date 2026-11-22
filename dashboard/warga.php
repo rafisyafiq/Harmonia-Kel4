@@ -27,7 +27,19 @@ $st = $pdo->prepare('SELECT COUNT(*) FROM reports WHERE user_id = ?');
 $st->execute([$u['id']]);
 $totalLaporan = (int)$st->fetchColumn();
 
-$title = 'Dashboard warga';
+$st = $pdo->prepare("SELECT COUNT(*) FROM reports WHERE user_id = ? AND status IN ('baru','diproses')");
+$st->execute([$u['id']]);
+$diproses = (int)$st->fetchColumn();
+
+$st = $pdo->prepare("SELECT COUNT(*) FROM reports WHERE user_id = ? AND status = 'selesai'");
+$st->execute([$u['id']]);
+$selesai = (int)$st->fetchColumn();
+
+$st = $pdo->prepare('SELECT COUNT(*) FROM proposals WHERE user_id = ?');
+$st->execute([$u['id']]);
+$usulanSaya = (int)$st->fetchColumn();
+
+$title = 'Dashboard Warga';
 $aksi = [
     ['Cek kondisi keluarga', '/cek-kondisi/index.php', 'Perbarui data pengeluaran keluarga.'],
     ['Ajukan bantuan', '/bantuan/ajukan.php', 'Mulai pengajuan baru.'],
@@ -42,25 +54,40 @@ $aksi = [
     <div class="container">
         <div class="dash__head">
             <div>
-                <p class="eyebrow">Dashboard warga</p>
-                <h1>Halo, <?= e($u['nama']) ?>.</h1>
+                <p class="eyebrow">Dashboard Warga</p>
+                <h1>Halo, <?= e($u['nama']) ?></h1>
                 <p class="small">Ringkasan layanan yang Anda gunakan. Data hanya terlihat oleh Anda dan petugas RW.</p>
             </div>
-            <a class="btn btn--outline btn--sm" href="<?= BASE ?>/index.php">Ke beranda</a>
+            <a class="btn btn--outline btn--sm" href="<?= BASE ?>/index.php">Ke Beranda</a>
         </div>
 
-        <div class="stat-grid">
-            <div class="stat"><span>Pengajuan aktif</span><b><?= $aktif ?></b></div>
-            <div class="stat"><span>Laporan saya</span><b><?= $totalLaporan ?></b></div>
-            <div class="stat"><span>Saldo bank sampah</span><b><?= rupiah($saldo) ?></b></div>
-            <div class="stat"><span>Paket sembako diambil</span><b><?= $sembako ?></b></div>
-            <div class="stat"><span>Usulan didukung</span><b><?= $dukungan ?></b></div>
+        <div class="panel" style="margin-bottom:1.5rem">
+            <h2 style="font-size:1.5rem">Ada Masalah di Lingkunganmu?</h2>
+            <p>Buat laporan atau ajukan usulan baru. Pantau statusnya di sini.</p>
+            <div class="form-actions">
+                <?php if (file_exists(ROOT_DIR . '/lapor/buat.php')) : ?>
+                    <a class="btn btn--primary" href="<?= BASE ?>/lapor/buat.php">Buat Laporan</a>
+                <?php endif; ?>
+                <?php if (file_exists(ROOT_DIR . '/usulan/buat.php')) : ?>
+                    <a class="btn btn--outline" href="<?= BASE ?>/usulan/buat.php">Ajukan Usulan</a>
+                <?php endif; ?>
+            </div>
+            <p class="small mt-2">
+                <a href="<?= BASE ?>/lapak/index.php">Lapak</a> · <a href="<?= BASE ?>/capaian/index.php">Capaian</a>
+            </p>
+        </div>
+
+        <div class="stat-grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr))">
+            <div class="stat"><span>Laporan Saya</span><b><?= $totalLaporan ?></b></div>
+            <div class="stat"><span>Sedang Diproses</span><b><?= $diproses ?></b></div>
+            <div class="stat"><span>Selesai</span><b><?= $selesai ?></b></div>
+            <div class="stat"><span>Usulan Saya</span><b><?= $usulanSaya ?></b></div>
         </div>
 
         <div class="dash-grid">
             <div>
                 <div class="panel">
-                    <h3>Pengajuan bantuan terakhir</h3>
+                    <h3>Pengajuan Bantuan Terakhir</h3>
                     <?php if ($pengajuan) : ?>
                         <div class="table-wrap">
                             <table class="data">
@@ -77,15 +104,15 @@ $aksi = [
                             </table>
                         </div>
                         <?php if (file_exists(ROOT_DIR . '/bantuan/index.php')) : ?>
-                            <p class="small mt-2"><a href="<?= BASE ?>/bantuan/index.php">Lihat semua pengajuan →</a></p>
+                            <p class="small mt-2"><a href="<?= BASE ?>/bantuan/index.php">Lihat Semua Pengajuan →</a></p>
                         <?php endif; ?>
                     <?php else : ?>
-                        <div class="empty"><b>Belum ada pengajuan.</b>Mulai dengan mengecek kondisi keluarga, lalu ajukan bantuan bila perlu.</div>
+                        <div class="empty"><b>Belum Ada Pengajuan</b>Mulai dengan mengecek kondisi keluarga, lalu ajukan bantuan bila perlu.</div>
                     <?php endif; ?>
                 </div>
 
                 <div class="panel">
-                    <h3>Laporan saya</h3>
+                    <h3>Laporan Saya</h3>
                     <?php if ($laporan) : ?>
                         <ul class="list-plain">
                             <?php foreach ($laporan as $l) : ?>
@@ -96,14 +123,14 @@ $aksi = [
                             <?php endforeach; ?>
                         </ul>
                     <?php else : ?>
-                        <div class="empty"><b>Belum ada laporan.</b>Laporkan masalah lingkungan di sekitar Anda.</div>
+                        <div class="empty"><b>Belum Ada Laporan</b>Laporkan masalah lingkungan di sekitar Anda.</div>
                     <?php endif; ?>
                 </div>
             </div>
 
             <div>
                 <div class="panel">
-                    <h3>Aksi cepat</h3>
+                    <h3>Aksi Cepat</h3>
                     <ul class="list-plain">
                         <?php foreach ($aksi as [$label, $file, $desc]) :
                             if (!file_exists(ROOT_DIR . $file)) {
@@ -114,9 +141,18 @@ $aksi = [
                     </ul>
                 </div>
                 <div class="panel">
-                    <h3>Pengaturan akun</h3>
+                    <h3>Pengaturan Akun</h3>
                     <p class="small">Ubah nama, nomor HP, atau sandi lewat halaman profil.</p>
-                    <a class="btn btn--outline btn--sm" href="<?= BASE ?>/auth/profil.php">Buka profil</a>
+                    <a class="btn btn--outline btn--sm" href="<?= BASE ?>/auth/profil.php">Buka Profil</a>
+                </div>
+                <div class="panel">
+                    <h3>Ringkasan Lain</h3>
+                    <ul class="list-plain">
+                        <li><span>Pengajuan Aktif</span><b><?= $aktif ?></b></li>
+                        <li><span>Saldo Bank Sampah</span><b><?= rupiah($saldo) ?></b></li>
+                        <li><span>Paket Sembako Diambil</span><b><?= $sembako ?></b></li>
+                        <li><span>Usulan Didukung</span><b><?= $dukungan ?></b></li>
+                    </ul>
                 </div>
             </div>
         </div>

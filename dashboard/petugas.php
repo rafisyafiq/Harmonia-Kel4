@@ -51,7 +51,7 @@ if ($rwId !== null) {
     $rwLabel = $st->fetchColumn() ?: 'RW';
 }
 
-$title = 'Dashboard petugas';
+$title = 'Dashboard Petugas';
 ?>
 <?php include ROOT_DIR . '/includes/header.php'; ?>
 
@@ -60,16 +60,16 @@ $title = 'Dashboard petugas';
         <div class="dash__head">
             <div>
                 <p class="eyebrow">Dashboard petugas · <?= e($rwLabel) ?></p>
-                <h1>Antrean layanan warga.</h1>
+                <h1>Antrean Layanan Warga</h1>
                 <p class="small">Pengajuan dan laporan diurutkan dari yang paling lama menunggu.</p>
             </div>
         </div>
 
         <div class="stat-grid">
-            <div class="stat"><span>Pengajuan menunggu</span><b><?= count($pengajuan) ?></b></div>
-            <div class="stat"><span>Laporan belum tuntas</span><b><?= count($laporan) ?></b></div>
-            <div class="stat"><span>Warga aman (konfirmasi)</span><b><?= (int)($bantuan['aman'] ?? 0) ?></b></div>
-            <div class="stat"><span>Butuh bantuan</span><b><?php $n = (int)($bantuan['butuh_bantuan'] ?? 0); ?>
+            <div class="stat"><span>Pengajuan Menunggu</span><b><?= count($pengajuan) ?></b></div>
+            <div class="stat"><span>Laporan Belum Tuntas</span><b><?= count($laporan) ?></b></div>
+            <div class="stat"><span>Warga Aman (Konfirmasi)</span><b><?= (int)($bantuan['aman'] ?? 0) ?></b></div>
+            <div class="stat"><span>Butuh Bantuan</span><b><?php $n = (int)($bantuan['butuh_bantuan'] ?? 0); ?>
                 <?php if (file_exists(ROOT_DIR . '/siaga/ringkasan.php')) : ?>
                     <a href="<?= BASE ?>/siaga/ringkasan.php"><?= $n ?></a>
                 <?php else : ?>
@@ -79,7 +79,7 @@ $title = 'Dashboard petugas';
         </div>
 
         <div class="panel">
-            <h3>Antrean pengajuan bantuan</h3>
+            <h3>Antrean Pengajuan Bantuan</h3>
             <?php if ($pengajuan) : ?>
                 <div class="table-wrap">
                     <table class="data">
@@ -96,7 +96,7 @@ $title = 'Dashboard petugas';
                                     <?php if (file_exists(ROOT_DIR . '/bantuan/detail.php')) : ?>
                                         <a class="btn btn--ghost btn--sm" href="<?= BASE ?>/bantuan/detail.php?id=<?= (int)$a['id'] ?>">Proses</a>
                                     <?php else : ?>
-                                        <span class="small muted">Menunggu modul</span>
+                                        <span class="small muted">Menunggu Modul</span>
                                     <?php endif; ?>
                                 </td>
                             </tr>
@@ -105,16 +105,16 @@ $title = 'Dashboard petugas';
                     </table>
                 </div>
             <?php else : ?>
-                <div class="empty"><b>Antrean kosong.</b>Tidak ada pengajuan yang menunggu.</div>
+                <div class="empty"><b>Antrean Kosong</b>Tidak ada pengajuan yang menunggu.</div>
             <?php endif; ?>
         </div>
 
         <div class="panel">
-            <h3>Antrean laporan warga</h3>
+            <h3>Antrean Laporan Warga</h3>
             <?php if ($laporan) : ?>
                 <div class="table-wrap">
                     <table class="data">
-                        <thead><tr><th>Judul</th><th>Kategori</th><th>Lokasi</th><th>Dibuat</th><th>Status</th></tr></thead>
+                        <thead><tr><th>Judul</th><th>Kategori</th><th>Lokasi</th><th>Dibuat</th><th>Status</th><th>Aksi</th></tr></thead>>
                         <tbody>
                         <?php foreach ($laporan as $r) : ?>
                             <tr>
@@ -123,13 +123,20 @@ $title = 'Dashboard petugas';
                                 <td><?= e($r['lokasi_teks']) ?><br><span class="small muted"><?= e($r['rw']) ?></span></td>
                                 <td><?= tanggal($r['created_at']) ?></td>
                                 <td><?= status_chip($r['status']) ?></td>
+                                <td>
+                                    <?php if (file_exists(ROOT_DIR . '/lapor/detail.php')) : ?>
+                                        <a class="btn btn--ghost btn--sm" href="<?= BASE ?>/lapor/detail.php?id=<?= (int)$r['id'] ?>">Proses</a>
+                                    <?php else : ?>
+                                        <span class="small muted">-</span>
+                                    <?php endif; ?>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
             <?php else : ?>
-                <div class="empty"><b>Tidak ada laporan tertunda.</b>Semua laporan sudah selesai.</div>
+                <div class="empty"><b>Tidak Ada Laporan Tertunda</b>Semua laporan sudah selesai.</div>
             <?php endif; ?>
         </div>
     </div>

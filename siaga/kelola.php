@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/auth.php';
 $u = require_role('petugas', 'admin');
 
-$title = 'Kelola titik kumpul';
+$title = 'Kelola Titik Kumpul';
 $rwId = $u['role'] === 'admin' ? null : (int)$u['rw_id'];
 $errors = [];
 
@@ -87,7 +87,7 @@ $rwList = $pdo->query('SELECT id, nama FROM rw ORDER BY nama')->fetchAll();
         <div class="dash__head">
             <div>
                 <p class="eyebrow">Siaga · Petugas</p>
-                <h1>Kelola titik kumpul.</h1>
+                <h1>Kelola Titik Kumpul</h1>
                 <p class="small"><?= $rwId !== null ? 'Hanya titik kumpul RW Anda.' : 'Semua RW.' ?></p>
             </div>
             <a class="btn btn--ghost btn--sm" href="<?= BASE ?>/siaga/ringkasan.php">Ringkasan</a>
@@ -100,7 +100,7 @@ $rwList = $pdo->query('SELECT id, nama FROM rw ORDER BY nama')->fetchAll();
         <div class="dash-grid">
             <div>
                 <div class="panel">
-                    <h3>Titik kumpul terdaftar</h3>
+                    <h3>Titik Kumpul Terdaftar</h3>
                     <?php if ($data) : ?>
                         <div class="table-wrap">
                             <table class="data">
@@ -126,14 +126,14 @@ $rwList = $pdo->query('SELECT id, nama FROM rw ORDER BY nama')->fetchAll();
                             </table>
                         </div>
                     <?php else : ?>
-                        <div class="empty"><b>Belum ada titik kumpul.</b>Tambahkan lewat formulir di samping.</div>
+                        <div class="empty"><b>Belum Ada Titik Kumpul</b>Tambahkan lewat formulir di samping.</div>
                     <?php endif; ?>
                 </div>
             </div>
 
             <div>
                 <div class="panel">
-                    <h3>Tambah titik kumpul</h3>
+                    <h3>Tambah Titik Kumpul</h3>
                     <form method="post" data-busy>
                         <?= csrf_field() ?>
                         <input type="hidden" name="aksi" value="simpan">
@@ -166,13 +166,13 @@ $rwList = $pdo->query('SELECT id, nama FROM rw ORDER BY nama')->fetchAll();
                                 <?php if (isset($errors['kapasitas'])) : ?><span class="field__error"><?= e($errors['kapasitas']) ?></span><?php endif; ?>
                             </div>
                             <div class="field <?= isset($errors['kontak_hp']) ? 'field--error' : '' ?>">
-                                <label for="kontak_hp">HP kontak</label>
+                                <label for="kontak_hp">HP Kontak</label>
                                 <input id="kontak_hp" name="kontak_hp" type="tel" inputmode="numeric" required maxlength="15" value="<?= old('kontak_hp') ?>">
                                 <?php if (isset($errors['kontak_hp'])) : ?><span class="field__error"><?= e($errors['kontak_hp']) ?></span><?php endif; ?>
                             </div>
                         </div>
                         <div class="field <?= isset($errors['kontak_nama']) ? 'field--error' : '' ?>">
-                            <label for="kontak_nama">Nama kontak</label>
+                            <label for="kontak_nama">Nama Kontak</label>
                             <input id="kontak_nama" name="kontak_nama" value="<?= old('kontak_nama') ?>" required minlength="3" maxlength="80">
                             <?php if (isset($errors['kontak_nama'])) : ?><span class="field__error"><?= e($errors['kontak_nama']) ?></span><?php endif; ?>
                         </div>

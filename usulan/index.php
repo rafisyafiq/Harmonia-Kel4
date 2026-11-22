@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../config/auth.php';
 
-$title = 'Usulan warga';
+$title = 'Usulan Warga';
 $active = 'usulan';
 $statusList = ['dibuka', 'tercapai', 'diteruskan', 'ditolak'];
 $fStatus = in_array($_GET['status'] ?? '', $statusList, true) ? $_GET['status'] : '';
@@ -37,21 +37,21 @@ $u = user();
     <div class="container">
         <div class="section__head">
             <div>
-                <p class="eyebrow">Usulan warga</p>
-                <h1>Usulkan perbaikan, kumpulkan dukungan.</h1>
+                <p class="eyebrow">Usulan Warga</p>
+                <h1>Usulkan Perbaikan, Kumpulkan Dukungan</h1>
                 <p class="lead">Usulan dengan dukungan penuh diteruskan petugas RW. Satu warga satu dukungan per usulan.</p>
             </div>
             <?php if ($u && $u['role'] === 'warga') : ?>
-                <a class="btn btn--primary" href="<?= BASE ?>/usulan/buat.php">Buat usulan</a>
+                <a class="btn btn--primary" href="<?= BASE ?>/usulan/buat.php">Buat Usulan</a>
             <?php endif; ?>
         </div>
 
         <form method="get" class="form-card" style="padding:1rem">
-            <div class="form-grid">
+            <div class="form-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr))">
                 <div class="field" style="margin-bottom:0">
                     <label for="status">Status</label>
                     <select id="status" name="status" onchange="this.form.submit()">
-                        <option value="">Semua status</option>
+                        <option value="">Semua Status</option>
                         <?php foreach ($statusList as $s) : ?>
                             <option value="<?= $s ?>" <?= $fStatus === $s ? 'selected' : '' ?>><?= e(STATUS_LABEL[$s]) ?></option>
                         <?php endforeach; ?>
@@ -82,12 +82,12 @@ $u = user();
                         <p class="small"><?= e(mb_strimwidth($p['deskripsi'], 0, 140, '…')) ?></p>
                         <div class="progress" aria-hidden="true"><span style="width:<?= $persen ?>%"></span></div>
                         <p class="small mt-1"><b><?= $jumlah ?></b> dari <?= $target ?> dukungan</p>
-                        <a class="btn btn--outline btn--sm" href="<?= BASE ?>/usulan/detail.php?id=<?= (int)$p['id'] ?>">Lihat usulan</a>
+                        <a class="btn btn--outline btn--sm" href="<?= BASE ?>/usulan/detail.php?id=<?= (int)$p['id'] ?>">Lihat Usulan</a>
                     </article>
                 <?php endforeach; ?>
             </div>
         <?php else : ?>
-            <div class="empty mt-3"><b>Belum ada usulan.</b>Usulan warga akan tampil di sini.</div>
+            <div class="empty mt-3"><b>Belum Ada Usulan</b>Usulan warga akan tampil di sini.</div>
         <?php endif; ?>
     </div>
 </section>

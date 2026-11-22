@@ -74,7 +74,7 @@ $title = 'Laporan ' . kode_laporan($id);
                 </div>
 
                 <div class="panel">
-                    <h3>Riwayat status</h3>
+                    <h3>Riwayat Status</h3>
                     <ul class="timeline">
                         <?php foreach ($logs as $l) : ?>
                             <li>
@@ -90,12 +90,12 @@ $title = 'Laporan ' . kode_laporan($id);
             <div>
                 <?php if ($bisaProses) : ?>
                     <div class="panel">
-                        <h3>Proses laporan</h3>
+                        <h3>Proses Laporan</h3>
                         <form method="post" action="<?= BASE ?>/lapor/proses.php" enctype="multipart/form-data" data-busy>
                             <?= csrf_field() ?>
                             <input type="hidden" name="id" value="<?= $id ?>">
                             <div class="field">
-                                <label for="status">Status berikutnya</label>
+                                <label for="status">Status Berikutnya</label>
                                 <select id="status" name="status" required>
                                     <?php foreach ($next as $val => $label) : ?>
                                         <option value="<?= $val ?>"><?= e($label) ?></option>

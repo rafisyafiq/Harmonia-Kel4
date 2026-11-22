@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     redirect(BASE . '/lapak/saya.php');
 }
 
-$title = 'Lapak saya';
+$title = 'Lapak Saya';
 $st = $pdo->prepare('SELECT * FROM businesses WHERE user_id = ? ORDER BY created_at DESC');
 $st->execute([$u['id']]);
 $data = $st->fetchAll();
@@ -29,11 +29,11 @@ $data = $st->fetchAll();
     <div class="container">
         <div class="dash__head">
             <div>
-                <p class="eyebrow">Lapak saya</p>
-                <h1>Usaha yang saya daftarkan.</h1>
+                <p class="eyebrow">Lapak Saya</p>
+                <h1>Usaha yang Saya Daftarkan</h1>
                 <p class="small">Lapak tampil di etalase setelah diverifikasi admin.</p>
             </div>
-            <a class="btn btn--primary btn--sm" href="<?= BASE ?>/lapak/daftar.php">Daftarkan usaha</a>
+            <a class="btn btn--primary btn--sm" href="<?= BASE ?>/lapak/daftar.php">Daftarkan Usaha</a>
         </div>
 
         <?php if ($data) : ?>
@@ -63,7 +63,7 @@ $data = $st->fetchAll();
                 </table>
             </div>
         <?php else : ?>
-            <div class="empty"><b>Belum ada lapak.</b>Daftarkan usaha kecil Anda agar dikenal tetangga.</div>
+            <div class="empty"><b>Belum Ada Lapak</b>Daftarkan usaha kecil Anda agar dikenal tetangga.</div>
         <?php endif; ?>
     </div>
 </section>

@@ -16,7 +16,7 @@ $layanan = [
     <div class="container footer__grid">
         <div class="footer__brand">
             <a class="brand brand--light" href="<?= BASE ?>/index.php">
-                <span class="brand__mark" aria-hidden="true">H</span>
+                <img class="brand__mark" src="<?= BASE ?>/assets/images/Logo.png" alt="Logo Harmonia">
                 <span class="brand__text">HARMONIA<small>A Better Life in a Better Community</small></span>
             </a>
             <p>Platform layanan warga berbasis gotong royong untuk lingkungan yang lebih adil, sehat, dan berkelanjutan.</p>
@@ -40,9 +40,9 @@ $layanan = [
                 <?php if (file_exists(ROOT_DIR . '/pengumuman/index.php')) : ?>
                     <li><a href="<?= BASE ?>/pengumuman/index.php">Pengumuman</a></li>
                 <?php endif; ?>
-                <li><a href="<?= BASE ?>/capaian/index.php">Capaian bersama</a></li>
+                <li><a href="<?= BASE ?>/capaian/index.php">Capaian Bersama</a></li>
                 <?php if (file_exists(ROOT_DIR . '/siaga/index.php')) : ?>
-                    <li><a href="<?= BASE ?>/siaga/index.php">Siaga bencana</a></li>
+                    <li><a href="<?= BASE ?>/siaga/index.php">Siaga Bencana</a></li>
                 <?php endif; ?>
             </ul>
         </div>
@@ -66,7 +66,7 @@ $layanan = [
     if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('is-visible'); }); return; }
     var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) { e.target.classList.toggle('is-visible', e.isIntersecting); });
-    }, { threshold: 0.1 });
+    }, { threshold: 0 });
     els.forEach(function (el) { io.observe(el); });
 })();
 </script>

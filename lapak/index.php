@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../config/auth.php';
 
-$title = 'Lapak usaha warga';
+$title = 'Lapak Usaha Warga';
 $active = 'lapak';
 
 $kategori = ['makanan', 'jasa', 'kerajinan', 'pertanian'];
@@ -31,21 +31,21 @@ $rwList = $pdo->query('SELECT id, nama FROM rw ORDER BY nama')->fetchAll();
     <div class="container">
         <div class="section__head">
             <div>
-                <p class="eyebrow">Lapak warga</p>
-                <h1>Usaha tetangga, dekat dari rumah.</h1>
+                <p class="eyebrow">Lapak Warga</p>
+                <h1>Usaha Tetangga, Dekat dari Rumah</h1>
                 <p class="lead">Etalase usaha kecil warga yang sudah diverifikasi admin. Hubungi pemilik langsung untuk memesan.</p>
             </div>
             <?php if (user() && user()['role'] === 'warga' && file_exists(ROOT_DIR . '/lapak/daftar.php')) : ?>
-                <a class="btn btn--primary" href="<?= BASE ?>/lapak/daftar.php">Daftarkan usaha</a>
+                <a class="btn btn--primary" href="<?= BASE ?>/lapak/daftar.php">Daftarkan Usaha</a>
             <?php endif; ?>
         </div>
 
         <form method="get" class="form-card mt-3" style="padding:1rem">
             <div class="form-grid">
                 <div class="field" style="margin-bottom:0">
-                    <label for="kategori">Filter kategori</label>
+                    <label for="kategori">Filter Kategori</label>
                     <select id="kategori" name="kategori" onchange="this.form.submit()">
-                        <option value="">Semua kategori</option>
+                        <option value="">Semua Kategori</option>
                         <?php foreach ($kategori as $k) : ?>
                             <option value="<?= $k ?>" <?= $pilih === $k ? 'selected' : '' ?>><?= ucfirst($k) ?></option>
                         <?php endforeach; ?>
@@ -82,7 +82,7 @@ $rwList = $pdo->query('SELECT id, nama FROM rw ORDER BY nama')->fetchAll();
                 <?php endforeach; ?>
             </div>
         <?php else : ?>
-            <div class="empty mt-3"><b>Belum ada lapak di kategori ini.</b>Lapak warga akan tampil setelah diverifikasi admin.</div>
+            <div class="empty mt-3"><b>Belum Ada Lapak di Kategori Ini</b>Lapak warga akan tampil setelah diverifikasi admin.</div>
         <?php endif; ?>
     </div>
 </section>

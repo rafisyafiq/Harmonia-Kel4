@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../config/auth.php';
 
-$title = 'Siaga bencana';
+$title = 'Siaga Bencana';
 $active = 'siaga';
 $u = user();
 $rwList = $pdo->query('SELECT id, nama, kelurahan FROM rw ORDER BY nama')->fetchAll();
@@ -27,8 +27,8 @@ if ($u) {
     <div class="container">
         <div class="section__head">
             <div>
-                <p class="eyebrow">Siaga bencana · SDGs 11</p>
-                <h1>Titik kumpul dan konfirmasi keselamatan.</h1>
+                <p class="eyebrow">Siaga Bencana · Sdgs 11</p>
+                <h1>Titik Kumpul dan Konfirmasi Keselamatan</h1>
                 <p class="lead">Pilih RW untuk melihat titik kumpul terdekat. Warga yang masuk dapat mengabari petugas apakah sudah aman atau butuh bantuan.</p>
             </div>
             <form method="get">
@@ -46,7 +46,7 @@ if ($u) {
 
         <div class="dash-grid">
             <div>
-                <h2>Titik kumpul</h2>
+                <h2>Titik Kumpul</h2>
                 <?php if ($shelters) : ?>
                     <div class="lapak-grid mt-2">
                         <?php foreach ($shelters as $s) : ?>
@@ -62,14 +62,14 @@ if ($u) {
                         <?php endforeach; ?>
                     </div>
                 <?php else : ?>
-                    <div class="empty mt-2"><b>Belum ada titik kumpul.</b>Petugas RW dapat menambahkannya lewat halaman kelola.</div>
+                    <div class="empty mt-2"><b>Belum Ada Titik Kumpul</b>Petugas RW dapat menambahkannya lewat halaman kelola.</div>
                 <?php endif; ?>
             </div>
 
             <div>
                 <?php if ($u && $u['role'] === 'warga') : ?>
                     <div class="panel">
-                        <h3>Konfirmasi keselamatan</h3>
+                        <h3>Konfirmasi Keselamatan</h3>
                         <?php if ($terakhir) : ?>
                             <p class="small">Konfirmasi terakhir: <?= status_chip($terakhir['status']) ?> · <?= tanggal($terakhir['created_at'], true) ?></p>
                         <?php endif; ?>
@@ -88,7 +88,7 @@ if ($u) {
                     </div>
                 <?php elseif (!$u) : ?>
                     <div class="panel">
-                        <h3>Warga terdaftar?</h3>
+                        <h3>Warga Terdaftar?</h3>
                         <p class="small">Masuk untuk mengonfirmasi keselamatan dan melihat riwayat konfirmasi Anda.</p>
                         <a class="btn btn--primary btn--sm" href="<?= BASE ?>/auth/login.php">Masuk</a>
                     </div>
@@ -96,10 +96,10 @@ if ($u) {
 
                 <?php if ($u && in_array($u['role'], ['petugas', 'admin'], true)) : ?>
                     <div class="panel">
-                        <h3>Panel petugas</h3>
+                        <h3>Panel Petugas</h3>
                         <p class="small">Lihat rekap warga aman, butuh bantuan, dan belum konfirmasi.</p>
-                        <a class="btn btn--outline btn--sm" href="<?= BASE ?>/siaga/ringkasan.php">Buka ringkasan</a>
-                        <a class="btn btn--ghost btn--sm" href="<?= BASE ?>/siaga/kelola.php">Kelola titik kumpul</a>
+                        <a class="btn btn--outline btn--sm" href="<?= BASE ?>/siaga/ringkasan.php">Buka Ringkasan</a>
+                        <a class="btn btn--ghost btn--sm" href="<?= BASE ?>/siaga/kelola.php">Kelola Titik Kumpul</a>
                     </div>
                 <?php endif; ?>
             </div>

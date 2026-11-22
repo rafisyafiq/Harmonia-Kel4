@@ -59,8 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <section class="auth">
     <div class="container auth__grid">
         <div class="auth__aside">
-            <p class="eyebrow eyebrow--light">Akun warga</p>
-            <h2>Layanan RW dalam satu akun.</h2>
+            <p class="eyebrow eyebrow--light">Akun Warga</p>
+            <h2>Layanan RW dalam Satu Akun</h2>
             <p>Akun warga dipakai untuk mengajukan bantuan, melapor, mengusulkan, dan mencatat setoran sampah. Data kondisi keluarga hanya terlihat oleh Anda dan petugas RW.</p>
             <ul>
                 <li>Status pengajuan dan laporan bisa dipantau kapan saja.</li>
@@ -71,15 +71,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <form class="form-card" method="post" novalidate data-busy>
             <?= csrf_field() ?>
-            <h2>Daftar akun</h2>
-            <p class="small">Sudah punya akun? <a href="<?= BASE ?>/auth/login.php">Masuk di sini</a>.</p>
+            <h2>Daftar Akun</h2>
+            <p class="small">Sudah punya akun? <a href="<?= BASE ?>/auth/login.php">Masuk di Sini</a>.</p>
 
             <?php if ($errors) : ?>
                 <div class="alert alert--error" role="alert">Periksa kembali isian yang ditandai.</div>
             <?php endif; ?>
 
             <div class="field <?= isset($errors['nama']) ? 'field--error' : '' ?>">
-                <label for="nama">Nama lengkap</label>
+                <label for="nama">Nama Lengkap</label>
                 <input id="nama" name="nama" value="<?= old('nama') ?>" autocomplete="name" required minlength="3" maxlength="80" pattern="[A-Za-z ]{3,80}">
                 <?php if (isset($errors['nama'])) : ?><span class="field__error"><?= e($errors['nama']) ?></span><?php endif; ?>
             </div>
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php if (isset($errors['sandi'])) : ?><span class="field__error"><?= e($errors['sandi']) ?></span><?php endif; ?>
                 </div>
                 <div class="field <?= isset($errors['sandi2']) ? 'field--error' : '' ?>">
-                    <label for="sandi2">Ulangi sandi</label>
+                    <label for="sandi2">Ulangi Sandi</label>
                     <input id="sandi2" name="sandi2" type="password" autocomplete="new-password" required>
                     <?php if (isset($errors['sandi2'])) : ?><span class="field__error"><?= e($errors['sandi2']) ?></span><?php endif; ?>
                 </div>
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="form-grid">
                 <div class="field <?= isset($errors['rw_id']) ? 'field--error' : '' ?>">
-                    <label for="rw_id">RW tempat tinggal</label>
+                    <label for="rw_id">RW Tempat Tinggal</label>
                     <select id="rw_id" name="rw_id" required>
                         <option value="">Pilih RW</option>
                         <?php foreach ($rwList as $r) : ?>
@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="form-actions">
-                <button class="btn btn--primary" type="submit">Buat akun</button>
+                <button class="btn btn--primary" type="submit">Buat Akun</button>
                 <a class="btn btn--outline" href="<?= BASE ?>/index.php">Kembali</a>
             </div>
         </form>

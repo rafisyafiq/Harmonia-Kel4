@@ -36,7 +36,7 @@ $posisi = array_search($a['status'], $langkah, true);
 $bisaProses = in_array($u['role'], ['petugas', 'admin'], true) && in_array($a['status'], ['diajukan', 'diverifikasi'], true);
 $next = $a['status'] === 'diajukan' ? ['diverifikasi' => 'Verifikasi'] : ['disetujui' => 'Setujui', 'ditolak' => 'Tolak'];
 
-$title = 'Detail pengajuan ' . kode_pengajuan($id);
+$title = 'Detail Pengajuan ' . kode_pengajuan($id);
 ?>
 <?php include ROOT_DIR . '/includes/header.php'; ?>
 
@@ -45,7 +45,7 @@ $title = 'Detail pengajuan ' . kode_pengajuan($id);
         <div class="dash__head">
             <div>
                 <p class="eyebrow">Pengajuan <?= kode_pengajuan($id) ?></p>
-                <h1><?= ucfirst(e($a['jenis'])) ?> · <?= e($a['warga']) ?></h1>
+                <h1><?= ucwords(e($a['jenis'])) ?> · <?= e($a['warga']) ?></h1>
                 <p class="small">Diajukan <?= tanggal($a['created_at'], true) ?> · <?= e($a['rw'] ?? '-') ?></p>
             </div>
             <div class="form-actions">
@@ -63,15 +63,15 @@ $title = 'Detail pengajuan ' . kode_pengajuan($id);
         <div class="dash-grid">
             <div>
                 <div class="panel">
-                    <h3>Alasan pengajuan</h3>
+                    <h3>Alasan Pengajuan</h3>
                     <p><?= nl2br(e($a['alasan'])) ?></p>
                     <?php if ($a['catatan_petugas']) : ?>
-                        <div class="alert alert--info"><b>Catatan petugas:</b> <?= nl2br(e($a['catatan_petugas'])) ?></div>
+                        <div class="alert alert--info"><b>Catatan Petugas:</b> <?= nl2br(e($a['catatan_petugas'])) ?></div>
                     <?php endif; ?>
                 </div>
 
                 <div class="panel">
-                    <h3>Riwayat status</h3>
+                    <h3>Riwayat Status</h3>
                     <?php if ($logs) : ?>
                         <ul class="timeline">
                             <?php foreach ($logs as $l) : ?>
@@ -91,12 +91,12 @@ $title = 'Detail pengajuan ' . kode_pengajuan($id);
             <div>
                 <?php if ($u['role'] !== 'warga') : ?>
                     <div class="panel">
-                        <h3>Data verifikasi</h3>
+                        <h3>Data Verifikasi</h3>
                         <ul class="list-plain">
                             <li><span>Warga</span><b><?= e($a['warga']) ?></b></li>
                             <li><span>RW</span><b><?= e($a['rw'] ?? '-') ?></b></li>
-                            <li><span>Hasil cek per kapita</span><b><?= $a['per_kapita'] !== null ? rupiah($a['per_kapita']) : '-' ?></b></li>
-                            <li><span>Status cek</span><span><?= $a['cek_status'] ? status_chip($a['cek_status']) : '-' ?></span></li>
+                            <li><span>Hasil Cek per Kapita</span><b><?= $a['per_kapita'] !== null ? rupiah($a['per_kapita']) : '-' ?></b></li>
+                            <li><span>Status Cek</span><span><?= $a['cek_status'] ? status_chip($a['cek_status']) : '-' ?></span></li>
                         </ul>
                         <p class="small muted mt-2">Periksa kebenaran data sebelum mengambil keputusan.</p>
                     </div>
@@ -104,7 +104,7 @@ $title = 'Detail pengajuan ' . kode_pengajuan($id);
 
                 <?php if ($bisaProses) : ?>
                     <div class="panel">
-                        <h3>Proses pengajuan</h3>
+                        <h3>Proses Pengajuan</h3>
                         <form method="post" action="<?= BASE ?>/bantuan/proses.php" data-busy>
                             <?= csrf_field() ?>
                             <input type="hidden" name="id" value="<?= $id ?>">
@@ -122,7 +122,7 @@ $title = 'Detail pengajuan ' . kode_pengajuan($id);
                                 <span class="field__count" id="hitung-catatan">0 karakter</span>
                             </div>
                             <div class="form-actions">
-                                <button class="btn btn--primary" type="submit">Simpan keputusan</button>
+                                <button class="btn btn--primary" type="submit">Simpan Keputusan</button>
                             </div>
                         </form>
                     </div>

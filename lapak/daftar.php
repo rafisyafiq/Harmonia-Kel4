@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/auth.php';
 $u = require_role('warga');
 
-$title = 'Daftarkan usaha';
+$title = 'Daftarkan Usaha';
 $kategoriList = ['makanan' => 'Makanan', 'jasa' => 'Jasa', 'kerajinan' => 'Kerajinan', 'pertanian' => 'Pertanian'];
 $errors = [];
 $editId = (int)($_GET['id'] ?? 0);
@@ -84,7 +84,7 @@ $nilai = fn(string $key) => $_POST[$key] ?? ($lama[$key] ?? '');
 <section class="form-page">
     <div class="container">
         <div class="form-card form-card--narrow">
-            <h1><?= $editId ? 'Ubah lapak.' : 'Daftarkan usaha.' ?></h1>
+            <h1><?= $editId ? 'Ubah Lapak' : 'Daftarkan Usaha' ?></h1>
             <p class="small">Setiap perubahan nama, deskripsi, atau foto membuat lapak menunggu verifikasi ulang. Tombol sembunyikan tidak.</p>
 
             <?php if ($errors) : ?>
@@ -96,7 +96,7 @@ $nilai = fn(string $key) => $_POST[$key] ?? ($lama[$key] ?? '');
                 <?php if ($editId) : ?><input type="hidden" name="id" value="<?= $editId ?>"><?php endif; ?>
 
                 <div class="field <?= isset($errors['nama_usaha']) ? 'field--error' : '' ?>">
-                    <label for="nama_usaha">Nama usaha</label>
+                    <label for="nama_usaha">Nama Usaha</label>
                     <input id="nama_usaha" name="nama_usaha" value="<?= e((string)$nilai('nama_usaha')) ?>" required minlength="3" maxlength="80">
                     <?php if (isset($errors['nama_usaha'])) : ?><span class="field__error"><?= e($errors['nama_usaha']) ?></span><?php endif; ?>
                 </div>
@@ -104,7 +104,7 @@ $nilai = fn(string $key) => $_POST[$key] ?? ($lama[$key] ?? '');
                 <div class="field <?= isset($errors['kategori']) ? 'field--error' : '' ?>">
                     <label for="kategori">Kategori</label>
                     <select id="kategori" name="kategori" required>
-                        <option value="">Pilih kategori</option>
+                        <option value="">Pilih Kategori</option>
                         <?php foreach ($kategoriList as $k => $label) : ?>
                             <option value="<?= $k ?>" <?= $nilai('kategori') === $k ? 'selected' : '' ?>><?= e($label) ?></option>
                         <?php endforeach; ?>
@@ -120,7 +120,7 @@ $nilai = fn(string $key) => $_POST[$key] ?? ($lama[$key] ?? '');
                 </div>
 
                 <div class="field <?= isset($errors['kontak']) ? 'field--error' : '' ?>">
-                    <label for="kontak">Kontak WhatsApp/HP</label>
+                    <label for="kontak">Kontak Whatsapp/HP</label>
                     <input id="kontak" name="kontak" type="tel" inputmode="numeric" value="<?= e((string)$nilai('kontak')) ?>" required maxlength="15">
                     <?php if (isset($errors['kontak'])) : ?><span class="field__error"><?= e($errors['kontak']) ?></span><?php endif; ?>
                 </div>

@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/auth.php';
 $u = require_role('warga');
 
-$title = 'Ajukan bantuan';
+$title = 'Ajukan Bantuan';
 $jenisList = ['pangan' => 'Pangan', 'tunai' => 'Tunai', 'kesehatan' => 'Kesehatan', 'pendidikan' => 'Pendidikan'];
 $errors = [];
 
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <section class="form-page">
     <div class="container">
         <div class="form-card form-card--narrow">
-            <h1>Ajukan bantuan.</h1>
+            <h1>Ajukan Bantuan</h1>
             <p class="small">Satu jenis bantuan hanya boleh punya satu pengajuan aktif. Petugas RW akan memverifikasi sebelum mengambil keputusan.</p>
 
             <?php if ($errors) : ?>
@@ -87,9 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endif; ?>
 
                 <div class="field <?= isset($errors['jenis']) ? 'field--error' : '' ?>">
-                    <label for="jenis">Jenis bantuan</label>
+                    <label for="jenis">Jenis Bantuan</label>
                     <select id="jenis" name="jenis" required>
-                        <option value="">Pilih jenis</option>
+                        <option value="">Pilih Jenis</option>
                         <?php foreach ($jenisList as $k => $label) : ?>
                             <option value="<?= $k ?>" <?= ($_POST['jenis'] ?? '') === $k ? 'selected' : '' ?>><?= e($label) ?></option>
                         <?php endforeach; ?>
@@ -98,20 +98,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="field <?= isset($errors['alasan']) ? 'field--error' : '' ?>">
-                    <label for="alasan">Alasan pengajuan</label>
+                    <label for="alasan">Alasan Pengajuan</label>
                     <textarea id="alasan" name="alasan" required minlength="20" maxlength="500" data-counter="hitung-alasan"><?= old('alasan') ?></textarea>
                     <span class="field__count" id="hitung-alasan">0 karakter</span>
                     <?php if (isset($errors['alasan'])) : ?><span class="field__error"><?= e($errors['alasan']) ?></span><?php endif; ?>
                 </div>
 
                 <div class="form-actions">
-                    <button class="btn btn--primary" type="submit">Kirim pengajuan</button>
+                    <button class="btn btn--primary" type="submit">Kirim Pengajuan</button>
                     <a class="btn btn--outline" href="<?= BASE ?>/bantuan/index.php">Kembali</a>
                 </div>
             </form>
 
             <div class="mt-3">
-                <h3>Pertanyaan umum</h3>
+                <h3>Pertanyaan Umum</h3>
                 <?php include ROOT_DIR . '/includes/faq.php'; ?>
             </div>
         </div>

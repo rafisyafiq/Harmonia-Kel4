@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/auth.php';
 $u = require_role('petugas', 'admin');
 
-$title = 'Ringkasan siaga';
+$title = 'Ringkasan Siaga';
 $rwId = $u['role'] === 'admin' ? null : (int)$u['rw_id'];
 
 $sql = "SELECT us.rw_id, rw.nama AS rw, s.status
@@ -59,11 +59,11 @@ $bantuan = $st->fetchAll();
     <div class="container">
         <div class="dash__head">
             <div>
-                <p class="eyebrow">Siaga · 24 jam terakhir</p>
-                <h1>Rekap keselamatan warga.</h1>
+                <p class="eyebrow">Siaga · 24 Jam Terakhir</p>
+                <h1>Rekap Keselamatan Warga</h1>
                 <p class="small">Hanya konfirmasi terbaru tiap warga dalam 24 jam yang dihitung.</p>
             </div>
-            <a class="btn btn--ghost btn--sm" href="<?= BASE ?>/siaga/index.php">Halaman siaga</a>
+            <a class="btn btn--ghost btn--sm" href="<?= BASE ?>/siaga/index.php">Halaman Siaga</a>
         </div>
 
         <?php if ($bantuan) : ?>
@@ -85,7 +85,7 @@ $bantuan = $st->fetchAll();
                 </table>
             </div>
         <?php else : ?>
-            <div class="empty"><b>Tidak ada yang butuh bantuan.</b>Belum ada konfirmasi "butuh bantuan" dalam 24 jam.</div>
+            <div class="empty"><b>Tidak Ada yang Butuh Bantuan</b>Belum ada konfirmasi "butuh bantuan" dalam 24 jam.</div>
         <?php endif; ?>
 
         <div class="panel mt-3">
@@ -93,7 +93,7 @@ $bantuan = $st->fetchAll();
             <?php if ($rekap) : ?>
                 <div class="table-wrap">
                     <table class="data">
-                        <thead><tr><th>RW</th><th>Warga</th><th>Aman</th><th>Butuh bantuan</th><th>Belum konfirmasi</th></tr></thead>
+                        <thead><tr><th>RW</th><th>Warga</th><th>Aman</th><th>Butuh Bantuan</th><th>Belum Konfirmasi</th></tr></thead>
                         <tbody>
                         <?php foreach ($rekap as $r) : ?>
                             <tr>

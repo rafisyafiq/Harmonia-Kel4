@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/auth.php';
 $u = require_role('warga');
 
-$title = 'Buat usulan';
+$title = 'Buat Usulan';
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <section class="form-page">
     <div class="container">
         <div class="form-card form-card--narrow">
-            <h1>Buat usulan.</h1>
+            <h1>Buat Usulan</h1>
             <p class="small">Usulan hanya terlihat untuk warga RW Anda. Bila dukungan mencapai target, petugas dapat meneruskannya.</p>
 
             <?php if ($errors) : ?>
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form method="post" data-busy>
                 <?= csrf_field() ?>
                 <div class="field <?= isset($errors['judul']) ? 'field--error' : '' ?>">
-                    <label for="judul">Judul usulan</label>
+                    <label for="judul">Judul Usulan</label>
                     <input id="judul" name="judul" value="<?= old('judul') ?>" required minlength="5" maxlength="100">
                     <?php if (isset($errors['judul'])) : ?><span class="field__error"><?= e($errors['judul']) ?></span><?php endif; ?>
                 </div>
@@ -58,14 +58,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="field <?= isset($errors['target_dukungan']) ? 'field--error' : '' ?>">
-                    <label for="target_dukungan">Target dukungan</label>
+                    <label for="target_dukungan">Target Dukungan</label>
                     <input id="target_dukungan" name="target_dukungan" type="number" min="10" max="500" step="1" required value="<?= old('target_dukungan', '50') ?>">
                     <span class="hint">10–500 warga.</span>
                     <?php if (isset($errors['target_dukungan'])) : ?><span class="field__error"><?= e($errors['target_dukungan']) ?></span><?php endif; ?>
                 </div>
 
                 <div class="form-actions">
-                    <button class="btn btn--primary" type="submit">Kirim usulan</button>
+                    <button class="btn btn--primary" type="submit">Kirim Usulan</button>
                     <a class="btn btn--outline" href="<?= BASE ?>/usulan/index.php">Kembali</a>
                 </div>
             </form>

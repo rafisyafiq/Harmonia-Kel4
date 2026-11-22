@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/auth.php';
 $u = require_role('petugas', 'admin');
 
-$title = 'Kelola pengumuman';
+$title = 'Kelola Pengumuman';
 $rwId = $u['role'] === 'admin' ? null : (int)$u['rw_id'];
 
 $sql = 'SELECT a.*, rw.nama AS rw FROM announcements a LEFT JOIN rw ON rw.id = a.rw_id';
@@ -22,13 +22,13 @@ $data = $st->fetchAll();
     <div class="container">
         <div class="dash__head">
             <div>
-                <p class="eyebrow">Pengumuman &amp; agenda</p>
-                <h1>Kelola informasi RW.</h1>
+                <p class="eyebrow">Pengumuman &amp; Agenda</p>
+                <h1>Kelola Informasi RW</h1>
                 <p class="small"><?= $rwId !== null ? 'Anda mengelola RW sendiri.' : 'Admin dapat mengelola semua RW dan pengumuman semua RW.' ?></p>
             </div>
             <div class="form-actions">
                 <a class="btn btn--primary btn--sm" href="<?= BASE ?>/pengumuman/form.php">Tambah</a>
-                <a class="btn btn--ghost btn--sm" href="<?= BASE ?>/pengumuman/index.php">Lihat publik</a>
+                <a class="btn btn--ghost btn--sm" href="<?= BASE ?>/pengumuman/index.php">Lihat Publik</a>
             </div>
         </div>
 
@@ -60,7 +60,7 @@ $data = $st->fetchAll();
                 </table>
             </div>
         <?php else : ?>
-            <div class="empty"><b>Belum ada pengumuman.</b>Tambahkan pengumuman atau agenda pertama.</div>
+            <div class="empty"><b>Belum Ada Pengumuman</b>Tambahkan pengumuman atau agenda pertama.</div>
         <?php endif; ?>
     </div>
 </section>

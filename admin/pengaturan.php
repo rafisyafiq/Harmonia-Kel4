@@ -37,7 +37,7 @@ $ambang = setting('ambang_dipantau_kali', '1.5');
         <div class="dash__head">
             <div>
                 <p class="eyebrow">Administrasi</p>
-                <h1>Pengaturan layanan.</h1>
+                <h1>Pengaturan Layanan</h1>
                 <p class="small">Nilai ini dipakai fitur cek kondisi keluarga dan beranda.</p>
             </div>
             <a class="btn btn--ghost btn--sm" href="<?= BASE ?>/dashboard/admin.php">Dashboard</a>
@@ -51,19 +51,19 @@ $ambang = setting('ambang_dipantau_kali', '1.5');
             <form method="post" data-busy>
                 <?= csrf_field() ?>
                 <div class="field <?= isset($errors['garis_batas_per_kapita']) ? 'field--error' : '' ?>">
-                    <label for="garis_batas_per_kapita">Garis batas per kapita (Rp)</label>
+                    <label for="garis_batas_per_kapita">Garis Batas per Kapita (Rp)</label>
                     <input id="garis_batas_per_kapita" name="garis_batas_per_kapita" type="number" min="1" required value="<?= old('garis_batas_per_kapita', (string)$batas) ?>">
                     <span class="hint">Contoh BPS, bukan penetapan resmi.</span>
                     <?php if (isset($errors['garis_batas_per_kapita'])) : ?><span class="field__error"><?= e($errors['garis_batas_per_kapita']) ?></span><?php endif; ?>
                 </div>
                 <div class="field <?= isset($errors['ambang_dipantau_kali']) ? 'field--error' : '' ?>">
-                    <label for="ambang_dipantau_kali">Ambang "perlu dipantau" (kali garis batas)</label>
+                    <label for="ambang_dipantau_kali">Ambang "Perlu Dipantau" (Kali Garis Batas)</label>
                     <input id="ambang_dipantau_kali" name="ambang_dipantau_kali" type="text" inputmode="decimal" required value="<?= old('ambang_dipantau_kali', $ambang) ?>">
                     <span class="hint">Antara 1,0 dan 3,0. Contoh: 1,5.</span>
                     <?php if (isset($errors['ambang_dipantau_kali'])) : ?><span class="field__error"><?= e($errors['ambang_dipantau_kali']) ?></span><?php endif; ?>
                 </div>
                 <div class="form-actions">
-                    <button class="btn btn--primary" type="submit">Simpan pengaturan</button>
+                    <button class="btn btn--primary" type="submit">Simpan Pengaturan</button>
                 </div>
             </form>
         </div>
